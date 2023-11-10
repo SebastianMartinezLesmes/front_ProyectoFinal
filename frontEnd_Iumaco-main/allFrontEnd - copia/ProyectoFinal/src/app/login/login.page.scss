@@ -1,0 +1,117 @@
+#col2 {
+  background-color: #39A900;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  size: 6;
+
+  div {
+    text-align: center;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+  }
+  #p2{ padding-top: 50px; font-size: 45px;}
+}
+
+ion-col {
+  height: 100vh; /* Establece la altura al 100% del alto de la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Elimina el relleno superior e inferior */
+  size: 6;
+
+  #formulario {
+    border-radius: 10px;
+    border: 3px solid #39A900;
+    margin: 20px;
+
+    #circulo {
+      height: 145px;
+      width: 145px;
+      background-color: #39A900;
+      color: white;
+      border-radius: 50%;
+      margin-top: -100px;
+      text-align: center;
+
+      img {
+        margin-top: 27px;
+        max-width: 115px;
+        max-height: 115px;
+      }
+    }
+
+ 
+    form {
+      
+      text-align: center;
+
+      ion-item {
+        margin: 15px;
+        border-radius: 10px;
+        border: 2px solid #39A900;
+        color: grey;
+      }
+
+      button {
+        width: 80%;
+        background-color: grey;
+        color: white;
+        padding: 10px 0;
+        margin: 15px 0;
+        border-radius: 4px;
+        font-size: 18px;
+      }
+
+      button:hover {
+        width: 80%;
+        background-color: #39A900;
+        color: white;
+      }
+    }
+  }
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cente{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 414px){
+  ion-content{
+    --background: #39A900;
+  }
+
+  #col2 {
+    display: none;
+  }
+  .cente {
+  border: 4px solid #ffff;
+  border-radius: 10px;
+  padding-top: 40px;
+
+  }
+  #circulo{
+    border: 2px solid #ffff;
+    margin-bottom: -50px;
+
+    img{
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      margin-top: 27px;
+    }
+  }
+}
