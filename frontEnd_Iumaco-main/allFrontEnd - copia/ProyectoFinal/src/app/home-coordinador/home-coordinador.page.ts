@@ -9,17 +9,18 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomeCoordinadorPage implements OnInit {
 
-  ngOnInit() {} 
-  constructor(private router: Router, 
+  idCoordinador: any = ''; 
+
+  constructor(
+    private router: Router, 
     private alertController: AlertController,
     private route: ActivatedRoute,
-    )
-    {
-      this.idCoordinador = this.route.snapshot.paramMap.get('data');
-      this.permiso();
-    }
+  ) {
+    this.idCoordinador = this.route.snapshot.paramMap.get('data');
+    this.permiso();
+  }
 
-  idCoordinador: any = ''; 
+  ngOnInit() {} 
 
   /* Aca estan los parametros para los botones de salida*/
   async salirPagina() {
@@ -40,16 +41,21 @@ export class HomeCoordinadorPage implements OnInit {
     });
   
     await alert.present();
-  };
+  }
 
-  permiso(){
-    if (this.idCoordinador === '' || this.idCoordinador === null){this.router.navigate(['/login']); }
-  };
+  permiso() {
+    if (this.idCoordinador === '' || this.idCoordinador === null) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   /* Aca estan los parametros para los botones que envian a la paguina donde se encuentra la lista de aprendices citados o por citar a comite*/
-  CitarComite(){ this.router.navigate(['/lista-citados', {data: this.idCoordinador}]); }
+  CitarComite() {
+    this.router.navigate(['/lista-citados', {data: this.idCoordinador}]);
+  }
   
   /* Aca estan los parametros para los botones que envian a la paguina donde se encuentran los documentos con las listas de aprendices citados a comite*/
-  Documentos(){ this.router.navigate(['/documentos', {data: this.idCoordinador}]); }
-  
+  Documentos() {
+    this.router.navigate(['/documentos', {data: this.idCoordinador}]);
+  }
 }

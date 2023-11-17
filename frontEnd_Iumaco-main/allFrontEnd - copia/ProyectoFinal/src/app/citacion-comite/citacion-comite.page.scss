@@ -51,7 +51,6 @@ h3{
 }
 
 h2 {
-  margin-left: 550px;
   text-align: center;
   font-size: 40px;
   margin-top: 50px;
@@ -105,4 +104,21 @@ pre{
   bottom: 0;
   right: 0;
   margin: 1px;
+}
+.center{
+  text-align: center;
+}
+@media screen and (max-width: 600px){
+
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;
+    border-bottom: 2px solid black;
+    display: inline-block;
+  }
+  #formulario{
+    padding-top: 30px;
+    margin-top: 40px;
+  }
 }

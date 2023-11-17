@@ -32,10 +32,16 @@ export class ListaCitadosPage implements OnInit {
   counter = 0;
   nombreAprendiz: string = '';
   correoAprendiz: string = '';
+  tnAprendiz: any ='';
+  nAprendiz: string = '';
   nombreInstructor: string = '';
   correoInstructor: string = '';
-
   idInstructor: string = '';
+  nInstructor: string = '';
+  fichaA: string = '';
+  fichaI: string = '';
+  jornada: string = '';
+  programa: string = '';
 
   sDia: string = '';
   sMes: string = '';
@@ -59,7 +65,6 @@ export class ListaCitadosPage implements OnInit {
   anio = this.fechaActual.getFullYear();
   anioSigiente = this.anio + 1;
   fechaFormateada = `${this.dia}/${this.mes}/${this.anio}`;
-  
 
   fromData = {
     nota: '',
@@ -67,7 +72,52 @@ export class ListaCitadosPage implements OnInit {
     instructorFK: '',
     ficha: '',
     fechaCitacion: '', 
-  }
+  };
+
+  mensajeSend: string = '';
+  destinatarios: string = '';
+
+  get cuerpo1(): string { return `Bogotá D.C., ${this.fechaFormateada}
+  
+  Ingeniero GUSTAVO BELTRAN MACIAS
+  Centro de Gestion de Mercados, Logística y Tecnologias de la Informacion
+  SENA Distrito Capital
+  Asunto: ${this.asunto},
+
+  Nombre y apellidos del aprendiz: ${this.nombreAprendiz}
+  Identificacion ${this.tnAprendiz} No.: ${this.nAprendiz}
+  Especialidad: ${this.programa}
+  Jornada: ${this.jornada}
+  No. Orden o Ficha: ${this.fichaA}
+  Correo del aprendiz: ${this.correoAprendiz}
+
+  HECHOS: ${this.nombreAprendiz}
+  ${this.fromData.nota}
+
+  NORMA INFRINGIDA: Según el acuerdo 00007 del 2012, el citado aprendiz infringio el Artículo y numerales siguientes:
+  -  Capítulo III, Artículo 9, numeral 1, Capítulo IV, Artículo 10, numeral 3, Reglamento de Aprendiz SENA
+  -  Capítulo IV, Artículo 10, Numeral 4, Reglamento de Aprendiz SENA
+
+  Tipo de Falta: Académica
+  Calificacion provisional de la falta: Grave
+  Por lo anterior me permito recomendar la siguiente sancion para el aprendiz:
+  Llamada de atencion por escrito ___ Condicionamiento de matrícula ___ Cancelacion de matrícula   ____
+  Nombre Instructor: ${this.nombreInstructor}
+  Cédula: ${this.nInstructor}
+  Grupo: ${this.fichaI}
+  Direccion o Email: ${this.correoInstructor}
+  Adjunto: Enviar el presente Informe al Coordinador académico
+  `};
+
+  get cuerpo2(): string { return `Bogotá D.C.,${this.fechaFormateada}
+
+  En relación a su solicitud de citación al aprendiz ${this.nombreAprendiz}, lamentamos informarle que la misma ha sido denegada. La coordinación académica ha evaluado detenidamente la situación y ha decidido no proceder con la citación.
+  Entendemos la importancia de su solicitud y la necesidad de mantener altos estándares académicos, pero después de un análisis minucioso, se ha determinado que la citación no es la medida más adecuada en este momento.
+  Si tiene alguna pregunta adicional o requiere información adicional sobre esta decisión, no dude en ponerse en contacto con nosotros. 
+  Agradecemos su comprensión y colaboración en este asunto.
+
+  Atentamente,
+  Coordinación Académica`};
 
   actualizarDias(mes: string) {
     let esBisiesto = false;
@@ -187,16 +237,17 @@ export class ListaCitadosPage implements OnInit {
           handler:()=>{ 
             this.asunto = 'Peticion denegada',
             this.newId = l.id, 
-            this.correoAprendiz = l.correoAprendiz, 
+            this.nombreAprendiz = l.aprendiz,
+            this.mensajeSend =this.cuerpo2,
+            this.destinatarios = l.correoInstructor,
+
             this.correoInstructor = l.correoInstructor
             this.deletePeticion();
 
             //envio del correo a los involucrados
-            /*const mensajeCodificado = encodeURIComponent(this.cuerpo2 + '\n\n');
-            const mailtoLink = `mailto:${this.correoInstructor}?subject=${this.asunto}&body=${mensajeCodificado}`;
-            window.location.href = mailtoLink;*/
+            this.enviarCoorreos();
 
-            this.presentAlert("Mensaje enviado", "La informacion se ha guardado y el mensaje se ha enviado con éxito");
+            this.presentAlert("Mensaje enviado", "El mensaje se ha enviado con éxito");
             this.router.navigate(['/lista-citados', {data: this.perm, dat: 'omitir'}]);
 
             setTimeout(() => { 
@@ -209,6 +260,7 @@ export class ListaCitadosPage implements OnInit {
       ]
     });  await alert.present();
   };  
+
   async confirmarCitacion(l: any){
 
     if (this.selectedDateTime === '' || this.selectedDateTime === 'omitir')
@@ -229,11 +281,23 @@ export class ListaCitadosPage implements OnInit {
 
               this.asunto = 'Citación a comite',
               this.newId = l.id, 
-              this.nombreAprendiz = l.aprendiz
+
+              /*console.log(this.cuerpo1)*/
+              
+              this.destinatarios = l.correoAprendiz +' '+ l.correoInstructor,
+
+              this.nombreAprendiz = l.aprendiz,
               this.correoAprendiz = l.correoAprendiz, 
-              this.nombreInstructor = l.instructor
+              this.nAprendiz = l.numeroTIA
+              this.tnAprendiz = l.tnA,
+              this.nombreInstructor = l.instructor,
               this.correoInstructor = l.correoInstructor,
               this.idInstructor = l.idInstructor,
+              this.nInstructor = l.numeroTII,
+              this.fichaI = l.fichaI,
+              this.fichaA = l.fichaA,
+              this.jornada = l.jornada,
+              this.programa = l.programa,
 
               //manda los datos al fromData
               this.fromData.aprendizFK = l.idAprendiz
@@ -243,15 +307,11 @@ export class ListaCitadosPage implements OnInit {
 
               //activa el proceso para recuperar los datos y los envia a la tabla
               this.getfromData();
-              this.insertListaPeticiones();
-              this.enviarComfirmacion();
-
-              //envio del correo a los involucrados
-              const mensajeCodificado = encodeURIComponent(this.cuerpo1 + '\n\n');
-              const mailtoLink = `mailto:${this.correoAprendiz +' '+ this.correoInstructor}?subject=${this.asunto}&body=${mensajeCodificado}`;
-              window.location.href = mailtoLink;
+              this.insertListaCitaciones();
 
               this.presentAlert("Mensaje enviado", "La informacion se ha guardado y el mensaje se ha enviado con éxito");
+              //envio del correo a los involucrados
+              this.enviarCoorreos();
 
               //despues se borra la informacion de la lista de peticiones y vuelve a cargar las card's
               this.deletePeticion();
@@ -262,22 +322,7 @@ export class ListaCitadosPage implements OnInit {
       });  await alert.present();
     }
   };
-  async enviarComfirmacion(){
-    const alert = await this.alertController.create({
-      header: 'Confirmar Acción',
-      message: '¿Está completamente seguro de que desea aceptar la solicitud?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          cssClass: 'secondary'
-        },
-        {
-          text: 'Aceptar',
-          handler:()=>{ console.log(`Mensaje enviado, confirmación exitosa para: ${this.selectedDateTime} al aprendiz con correo: ${this.correoAprendiz}`); }
-        }
-      ]
-    });  await alert.present();
-  }
+  
   per(){
     if (this.perm === '' || this.perm === null){this.router.navigate(['/login']); }
   };
@@ -300,60 +345,48 @@ export class ListaCitadosPage implements OnInit {
   }
 
   //aca se prueba el envio de informacion a 
-  insertListaPeticiones(){
+  insertListaCitaciones(){
     console.log(this.fromData)
     axios.post("http://localhost/iumaco_db/insertlistaCitaciones.php", this.fromData).then((response) =>{ console.log(response);})
     .catch((error) =>{console.log(error)});
   }
-
-  get cuerpo1(): string { return `Bogotá D.C.,${this.fechaFormateada}
-  
-  Ingeniero GUSTAVO BELTRAN MACIAS
-  Centro de Gestion de Mercados, Logística y Tecnologias de la Informacion
-  SENA Distrito Capital
-  Asunto: ${this.asunto},
-
-  Nombre y apellidos del aprendiz: ${this.nombreAprendiz}
-  Identificacion C.C. o T.I. No.: TI 1013
-  Especialidad: Tecnologo en Implementacion de Infraestructura de Tecnologías de la Informacion y Comunicaciones.
-  Jornada: Mañana
-  No. Orden o Ficha: 2503816
-  Correo del aprendiz: ${this.correoAprendiz}
-
-  HECHOS: ${this.nombreAprendiz}
-  ${this.fromData.nota}
-
-  NORMA INFRINGIDA: Según el acuerdo 00007 del 2012, el citado aprendiz infringio el Artículo y numerales siguientes:
-  -  Capítulo III, Artículo 9, numeral 1, Capítulo IV, Artículo 10, numeral 3, Reglamento de Aprendiz SENA
-  -  Capítulo IV, Artículo 10, Numeral 4, Reglamento de Aprendiz SENA
-
-  Tipo de Falta: Académica
-  Calificacion provisional de la falta: Grave
-  Por lo anterior me permito recomendar la siguiente sancion para el aprendiz:
-  Llamada de atencion por escrito ___ Condicionamiento de matrícula ___ Cancelacion de matrícula   ____
-  Nombre Instructor: ${this.nombreInstructor}
-  Cédula: 5.826
-  Grupo: 2477714
-  Direccion o Email: ${this.correoInstructor}
-  Adjunto: Enviar el presente Informe al Coordinador académico
-  `};
-  get cuerpo2(): string { return `Bogotá D.C.,${this.fechaFormateada}
-
-  En relación a su solicitud de citación al aprendiz, lamentamos informarle que la misma ha sido denegada. La coordinación académica ha evaluado detenidamente la situación y ha decidido no proceder con la citación.
-  Entendemos la importancia de su solicitud y la necesidad de mantener altos estándares académicos, pero después de un análisis minucioso, se ha determinado que la citación no es la medida más adecuada en este momento.
-  Si tiene alguna pregunta adicional o requiere información adicional sobre esta decisión, no dude en ponerse en contacto con nosotros. 
-  Agradecemos su comprensión y colaboración en este asunto.
-
-  Atentamente,
-  Coordinación Académica`};
 
   entrada(){
     if (this.selectedDateTime === 'omitir'){}
     else {if (this.counter === 0){
       this.presentAlert("Por favor", "proporcione la fecha del próximo comité de evaluación y seguimiento al que desea enviar al aprendiz.");
       this.counter = this.counter + 1;
-    }
-  }
+    }}
   };
 
+  enviarCoorreos(){
+
+    if(this.asunto === 'Citación a comite'){
+    this.mensajeSend = this.cuerpo1
+    console.log(this.mensajeSend);
+    }
+    else{
+      this.mensajeSend = this.cuerpo2
+      console.log(this.mensajeSend);
+    }
+
+    const url = 'http://localhost:3000/envio';
+    const body = {
+      asunto: this.asunto,
+      email: this.destinatarios,
+      mensaje: this.mensajeSend
+    };
+    
+    this.http.post(url, body).subscribe(
+      (response) => {
+        console.log('Correo enviado exitosamente', response);
+        console.log(body.mensaje);
+      },
+      (error) => {
+        console.error('Error al enviar el correo', error);
+        console.log(body.mensaje);
+      }
+    )
+    //otra acción
+  };
 }

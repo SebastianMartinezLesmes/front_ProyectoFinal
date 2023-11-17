@@ -37,6 +37,8 @@ export class DocumentosEditPage implements OnInit {
 
   volver(){ this.router.navigate(['/documentos', {data: this.idCoor}]); }
 
+  mensajeSend: string = '';
+
   idCita: any ='';
   d: any = '';
   ca: any = '';
@@ -133,31 +135,49 @@ export class DocumentosEditPage implements OnInit {
     
       this.presentAlert("Campos Vacíos", "Los siguientes campos están vacíos: " + camposVacios);
     } else {
-      this.data.newId = this.idCita;
-    this.data.newDecision = this.d;
-    // Ajusta la URL y anexa los datos como parámetros GET
-    const url = `http://localhost/iumaco_db/updateListaCitaciones.php?newId=${this.data.newId}&newDecision="${this.data.newDecision}"`;
-    axios.get(url)
-      .then((response) => {
-        console.log(response.data);
-
-        if(response.data == 1){
-          this.presentAlert("Actualización exitosa", "");
-          this.router.navigate(['/documentos', {data: this.idCoor}]);
-          setTimeout(() => { 
-            window.location.reload();
-          }, 2000);
-          
-        }else{
-          this.presentAlert("Actualizacion fallida", "");
+      
+      if (this.descargosE === '') {
+        if (this.descargosV === '') {
+          this.presentAlert("Falta información", "Por favor, coloque tanto los descargos escritos como verbales presentados por el aprendiz.");
+        } else {
+          this.presentAlert("Falta información", "Por favor, coloque los descargos escritos presentados por el aprendiz.");
         }
-        // Maneja la respuesta del servidor aquí
-      })
-      .catch((error) => {
-        console.error(error);
-        // Maneja errores aquí
+      } else if (this.descargosV === '') {
+        this.presentAlert("Falta información", "Por favor, coloque los descargos verbales presentados por el aprendiz.");
+      } else {
+
+      this.data.newId = this.idCita;
+      this.data.newDecision = this.d;
+      
+      // Ajusta la URL y anexa los datos como parámetros GET
+      const url = `http://localhost/iumaco_db/updateListaCitaciones.php?newId=${this.data.newId}&newDecision="${this.data.newDecision}"`;
+      axios.get(url)
+        .then((response) => {
+          console.log(response.data);
+
+          if(response.data == 1){
+            this.presentAlert("Actualización exitosa", "");
+            //enviao de correos
+            this.enviarCoorreos();
+
+            this.router.navigate(['/documentos', {data: this.idCoor}]);
+
+            setTimeout(() => { 
+              window.location.reload();
+            }, 2000);
+            
+          }else{
+            this.presentAlert("Actualizacion fallida", "");
+          }
+          // Maneja la respuesta del servidor aquí
+        })
+        .catch((error) => {
+          console.error(error);
+          // Maneja errores aquí
+        }
+      );
+
       }
-    );
     }
     
   }
@@ -165,8 +185,42 @@ export class DocumentosEditPage implements OnInit {
   perm(){
     if (this.a === '' || this.a === null){this.router.navigate(['/login']); }
   };
+
+  enviarCoorreos(){
+
+    if(this.selectedOption === 'Acta de condicionamiento'){
+      this.mensajeSend = this.cuerpoActa;
+      console.log(this.mensajeSend);
+      }
+      else{
+        this.mensajeSend = this.cuerpoCancelar;
+        console.log(this.mensajeSend);
+      }
+
+    const url = 'http://localhost:3000/envio';
+    const body = {
+      asunto: this.selectedOption,
+      email: this.ci+' '+this.ca,
+      mensaje: this.mensajeSend
+    };
+    
+    this.http.post(url, body).subscribe(
+      (response) => {
+        console.log('Correo enviado exitosamente', response);
+        console.log(body.mensaje);
+      },
+      (error) => {
+        console.error('Error al enviar el correo', error);
+        console.log(body.mensaje);
+      }
+    )
+    //otra acción
+  };
   
-  get cuerpoActa(): string { return `${this.fechaFormateada}
+  get cuerpoActa(): string { return `
+  
+  selectedOption: ${this.selectedOption}
+  ${this.fechaFormateada}
   Bogotá,
   Señor/a ${this.a}
   ${this.ca}
@@ -225,6 +279,9 @@ export class DocumentosEditPage implements OnInit {
   //-------------------------------------------------------------------------------------------------------------------------------------------
 
   get cuerpoCancelar(): string { return `${this.fechaFormateada}
+
+  selectedOption: ${this.selectedOption}
+
   Bogotá,
   Señor/a ${this.a}
   ${this.ca}
@@ -292,4 +349,5 @@ export class DocumentosEditPage implements OnInit {
   Cargo: Coordinador Académico
   VB: Lorena Salas
   Cargo: Abogada Despacho Subdirector  `};
+
 }
