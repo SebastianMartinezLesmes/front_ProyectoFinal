@@ -33,6 +33,8 @@ export class FelicitarAprendizPage implements OnInit {
   }; 
 
   /* Aca estan los parametros para los botones de salida y paguina anterior de la paguina*/
+  citacionComite() { this.router.navigate(['/citacion-comite', { data: this.idInstructor }]); }
+  llamadoAtencion() { this.router.navigate(['/llamado-atencion', { data: this.idInstructor }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructor }]); }
   async confirmarSalida() {
     const alert = await this.alertController.create({

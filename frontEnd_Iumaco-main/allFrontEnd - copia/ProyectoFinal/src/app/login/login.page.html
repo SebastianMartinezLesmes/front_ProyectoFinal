@@ -15,17 +15,22 @@
           <form (ngSubmit)="login()">
             <ion-item>
               <ion-label position="floating">Cedula</ion-label>
-              <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+              <ion-input type="number" [(ngModel)]="username" name="username"></ion-input>
             </ion-item>
                             
             <ion-item>
               <ion-label position="floating">Contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+              <ion-input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
+              <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
             </ion-item>
             
             <button expand="full" type="submit">Iniciar sesión</button>
             
           </form>
+        </div>
+
+        <div class="respo">
+          <img src="../../assets/Captura de pantalla 2023-10-20 200054.png" class="hola">
         </div>
       </div>
       
@@ -33,11 +38,10 @@
     <ion-col id="col2" >
 
       <div>
-        <img src="../../assets/Captura de pantalla 2023-10-20 200054.png" alt="">
+        <img src="../../assets/Captura de pantalla 2023-10-20 200054.png" class="pool">
         <p id="p2">{{fechaFormateada}}</p>
       </div>
 
     </ion-col>
   </ion-row>
-
 </ion-content>

@@ -12,34 +12,71 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="centered-container">
-  <h2>Formulario de Llamado de Atención</h2>
-  <div id="formulario">
-    <div id="formularioLlamadoAtencion">
-      
-      <form action="" method="POST">
-
-        <ion-item class="cuadro">
-          <ion-label for="fichas">Fichas:</ion-label>
-          <ion-select id="fichas" [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
-            <ion-select-option *ngFor="let ficha of fichasUnicas" [value]="ficha">{{ ficha }}</ion-select-option>
-          </ion-select>
-        </ion-item><br>
-        
-        <ion-item class="cuadro">
-          <ion-label for="destinatario">Aprendices como destinatario:</ion-label>
-          <ion-select id="destinatario" [(ngModel)]="destinatario" name="destinatario" multiple="false" (ionChange)="informacionAprendiz()">
-            <ion-select-option *ngFor="let destinatario of destinatarios" [value]="destinatario.email">{{ destinatario }}</ion-select-option>
-          </ion-select>
-        </ion-item><br>
-
-        <ion-item class="cuadro">
-          <ion-label position="floating">Nota:</ion-label>
-          <ion-textarea [(ngModel)]="nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
-        </ion-item><br><br>
-  
-        <input type="submit" value="Enviar" (click)="enviarCorreo()">
-      </form>
-    </div>
+  <div class="center">
+    <h2>Formulario de Llamado de Atención</h2>
   </div>
+  <div id="formulario">
+    
+      
+      <ion-row>
+
+        <ion-col>
+          <ion-card class="uno" (click)="felicitarAprendiz()" >
+            <ion-card-header>
+              <ion-icon  name="ribbon-outline" id="icon1"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              Felicitaciones 
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+        <ion-col>
+          <div id="formularioLlamadoAtencion">
+            <div id="formularioFelicitar">
+          
+              <form method="POST">
+    
+                <ion-item class="cuadro">
+                  <ion-label for="fichas">Fichas:</ion-label>
+                  <ion-select id="fichas" [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
+                    <ion-select-option *ngFor="let ficha of fichasUnicas" [value]="ficha">{{ ficha }}</ion-select-option>
+                  </ion-select>
+                </ion-item><br>
+                
+                <ion-item class="cuadro">
+                  <ion-label for="destinatario">Aprendices como destinatario:</ion-label>
+                  <ion-select id="destinatario" [(ngModel)]="destinatario" name="destinatario" multiple="false" (ionChange)="informacionAprendiz()">
+                    <ion-select-option *ngFor="let destinatario of destinatarios" [value]="destinatario.email">{{ destinatario }}</ion-select-option>
+                  </ion-select>
+                </ion-item><br>
+        
+                <ion-item class="cuadro">
+                  <ion-label position="floating">Nota:</ion-label>
+                  <ion-textarea [(ngModel)]="nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
+                </ion-item><br><br>
+          
+                <input type="submit" value="Enviar" (click)="enviarCorreo()">
+              </form>
+              
+            </div>
+          </div>
+        </ion-col>
+  
+        <ion-col>
+  
+          <ion-card class="uno" (click)="citacionComite()">
+            <ion-card-header>
+              <ion-icon name="reader-outline" id="icon3"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              Solicitud para comite
+            </ion-card-content>
+          </ion-card>
+  
+        </ion-col>
+      </ion-row>
+
+    </div>
   <img class="este" src="../../assets/icon/Captura-fondo-sena.png">
 </ion-content>

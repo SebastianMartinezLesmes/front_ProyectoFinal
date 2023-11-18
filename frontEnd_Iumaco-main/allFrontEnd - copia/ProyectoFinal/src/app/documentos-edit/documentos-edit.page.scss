@@ -1,22 +1,54 @@
-ion-select{
-    margin-right: 40px;
-    margin-left: 40px;
-}
-
 ion-content { 
     --background:  #39A900; 
 
     #curDate{   
         --background: #39A900;
+        ion-select{
+            margin-left: 4px;
+            margin-right: 4px;
+            color: black;
+            background-color: white;
+        }
         
-        #item1{
-            margin-right: 20px;
-        }
-        #item2{
-            margin-right: 20px;
-        }
-        #item3{
-            margin-right: 20px;
+        /*#item1{} #item2{} #item3{}*/
+    }
+}
+
+ion-header{
+    ion-toolbar{
+        ion-item{
+            button {
+                background-color: rgb(57, 169, 0);
+                width: 100px;
+                height: 30px;
+                border-radius: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: 10px;
+              }
+        
+              button:hover {
+                color: rgb(57, 169, 0);
+                background-color: transparent;
+                border: 3px solid  rgb(57, 169, 0);
+              }
         }
     }
+}
+
+#actualizar {
+    background-color: rgb(57, 169, 0);
+    width: 100px;
+    height: 40px;
+    size: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#actualizar:hover {
+    color: rgb(57, 169, 0);
+    background-color: transparent;
+    border: 3px solid  rgb(57, 169, 0);
 }

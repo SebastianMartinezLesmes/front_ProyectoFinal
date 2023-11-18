@@ -1,30 +1,40 @@
-ion-content{  --background: rgb(57, 169, 0); }
+.pop{
+    --background: rgb(57, 169, 0);
+}
 
-ion-header {
-    ion-item {
+h1{
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    margin-top: -400px;
+}
 
-        h3 {
-            margin-left: 700px;
-            font-family: 'Times New Roman', Times, serif;
-        }
-  
-        #button1, #button2 {
-            background-color: rgb(57, 169, 0);
-            width: 100px;
-            height: 30px;
-            border-radius: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-        }
-        #button1:hover, #button2:hover{
-            color: rgb(57, 169, 0);
-            background-color: transparent;
-            border: 3px solid  rgb(57, 169, 0);
-        }
-    }
+h3{
+    
+    margin-left: 20px;
+    font-size: 22px;
+    color:#FFFFFF
+}
+
+.logo{
+    height: 70px;
+    padding-left: 690px;
 }
   
+.botonsesion{
+    --color:#ffffff;
+    width: 130px;
+    height: 60px;
+    border-radius: 10px;
+    background: #39A900;
+    margin: 15px;
+    font-size: 20px;
+}
+.botonsesion:hover{
+    --color: white;
+    background-color: rgb(57, 169, 0);
+    border: 3px solid  white;
+}
 
 ion-card{
     ion-item{
@@ -49,16 +59,27 @@ ion-card{
     align-items: center; /* Centra verticalmente */
     background-color: transparent;
 }
-
-#logo {
-    margin: 5px;
-    width: 100px; 
-    height: 100px; 
-    border-radius: 50%; 
-    background-color: rgb(251,251,226); 
-
-    img {
+img {
     max-width: 100%; 
     max-height: 100%; 
+}
+content{
+    border: 2px solid #39A900 ;
+}
+
+@media screen and (max-width: 414px){
+
+    h3, .logo{
+        display: none;
     }
-} 
+    
+    .botonsesion{
+        --color:#ffffff;
+        width: 120px;
+        height: 60px;
+        border-radius: 10px;
+        background: #39A900;
+        font-size: 20px;
+    }
+
+}

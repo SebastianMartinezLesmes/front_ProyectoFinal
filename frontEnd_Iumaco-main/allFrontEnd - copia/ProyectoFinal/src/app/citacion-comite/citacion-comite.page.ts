@@ -36,6 +36,8 @@ export class CitacionComitePage implements OnInit {
   };  
 
   /* Aca estan los parametros para los botones de salida y paguina anterior de la paguina*/
+  felicitarAprendiz() { this.router.navigate(['felicitar-aprendiz', { data: this.idInstructor }]); }
+  llamadoAtencion() { this.router.navigate(['/llamado-atencion', { data: this.idInstructor }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructor }]); }
   async confirmarSalida() {
     const alert = await this.alertController.create({

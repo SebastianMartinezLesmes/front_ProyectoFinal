@@ -3,63 +3,37 @@
   --background: rgb(57, 169, 0);
   
 }
-h1{
-  text-align: center;
-  font-size: 30px;
-  position: absolute;
-  margin-top: -400px;
 
-}
 .logo{
   height: 70px;
-  padding-left: 660px;
+  margin-left: 700px;
+  
 }
 
 h3{
-  margin-left: 20px;
-  font-size: 22px;
+ 
+  font-size: 20px;
   color:#FFFFFF
 }
-.two{
-  position: absolute;
-border: 2px solid  rgb(57, 169, 0);
- margin-top: 100px;
- margin-left: 140px;
- text-align: center;
- font-size: 20px;
- border-radius: 30px;
- width: 240px;
- height: 280px;
-}
+
 .uno{
-  position: absolute;
-  border: 2px solid  rgb(57, 169, 0);
+  border: 3px solid  rgb(57, 169, 0);
    margin-top: 100px;
-   margin-left: 280px;
    text-align: center;
    font-size: 20px;
    border-radius: 30px;
    width: 240px;
    height: 280px;
+   justify-content: center;
 }
-.tre{
-  position: absolute;
-  border: 2px solid  rgb(57, 169, 0);
-  margin-top: 100px;
-  margin-left: 10px;
-  text-align: center;
-  font-size: 20px;
-  border-radius: 30px;
-  width: 240px;
-  height: 280px;
-}
+
 .kilo{
   --background: #FFFFFF;
 }
 
 .botonsesion{
   --color:#ffffff;
-  font-size: 20px;
+  font-size: 18px;
   width: 200px;
   height: 40px;
   border-radius: 10px;
@@ -71,7 +45,7 @@ border: 2px solid  rgb(57, 169, 0);
 }
 
 ion-title{
-  margin-left: 650px;
+ 
   text-align: center;
   font-size: 50px;
   margin-top: 50px;
@@ -99,4 +73,40 @@ ion-card-content{
   bottom: 0;
   right: 0;
   margin: 1px;
+}
+.center{
+  text-align: center;
+}
+ion-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;    
+}
+@media screen and (max-width: 600px){
+.este{
+  display:none;
+}
+
+ion-title{
+ 
+  text-align: center;
+  font-size: 35px;
+  margin-top: 50px;
+  border-bottom: 2px solid black;
+  display: inline-block;
+}
+
+.botonsesion{
+  font-size: 15px;
+  margin-left: 0px;
+}
+.uno:hover, .two:hover, .tre:hover{
+  background-color: rgb(57, 169, 0);
+  color: white;
+  cursor: pointer;
+  ion-icon{
+    color: white;
+  }
+}
 }

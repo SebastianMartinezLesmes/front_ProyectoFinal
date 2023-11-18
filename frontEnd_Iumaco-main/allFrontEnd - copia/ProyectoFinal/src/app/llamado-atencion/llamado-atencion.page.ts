@@ -37,6 +37,8 @@ export class LlamadoAtencionPage implements OnInit {
     await alert.present();
   };
 
+  felicitarAprendiz() { this.router.navigate(['felicitar-aprendiz', { data: this.idInstructorRecived }]); }
+  citacionComite() { this.router.navigate(['/citacion-comite', { data: this.idInstructorRecived }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructorRecived }]); }
   async confirmarSalida() {
     const alert = await this.alertController.create({
