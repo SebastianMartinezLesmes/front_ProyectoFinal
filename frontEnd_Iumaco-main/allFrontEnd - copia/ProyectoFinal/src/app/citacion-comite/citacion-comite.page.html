@@ -4,7 +4,7 @@
       <h3> IUMACO </h3> 
       <div id="logo"><img src="../../assets/sena.png" class="logo"></div>
       <div class="custom-button" slot="end">
-        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Volver</ion-button>
+        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Página principal</ion-button>
         <ion-button fill="clear" class="botonsesion"   (click)="confirmarSalida()">Cerrar sesión</ion-button>
       </div>
     </ion-item>
@@ -53,7 +53,12 @@
                 <ion-item class="cuadro">
                   <ion-label position="floating">Nota:</ion-label>
                   <ion-textarea [(ngModel)]="nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
-                </ion-item><br><br>
+                </ion-item><br>
+
+                <ion-item class="cuadro">
+                  <ion-label position="floating">Link Evidencias:</ion-label>
+                  <ion-input [(ngModel)]="fromData.linkEvidencias" id="linkEvidencias" name="linkEvidencias" rows="4" cols="30"></ion-input>
+                </ion-item><br>
           
                 <input type="submit" value="Enviar" (click)="enviarCorreo()">
               </form>

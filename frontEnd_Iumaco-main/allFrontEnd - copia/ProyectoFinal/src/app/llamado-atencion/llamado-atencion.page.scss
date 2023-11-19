@@ -24,6 +24,7 @@ h3{
   --color:#ffffff;
   height: 40px;
   border-radius: 10px;
+  font-size: 15px;
 }
 .botonsesion:hover{
   --color: rgb(57, 169, 0);
@@ -104,6 +105,7 @@ pre{
   bottom: 0;
   right: 0;
   margin: 1px;
+  z-index: -1; /* Coloca la imagen detrás del contenido */
 }
 .center{
   text-align: center;
@@ -116,14 +118,18 @@ ion-icon{
 }
 .uno{
   border: 3px solid  rgb(57, 169, 0);
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 150px;
   text-align: center;
-  font-size: 50px;
   border-radius: 30px;
   width: 240px;
   height: 280px;
   justify-content: center;
+
+  ion-card-content{
+    font-size: 30px;
+    margin: -15px;
+  }
 }
 .uno:hover, .two:hover, .tre:hover{
   background-color: rgb(57, 169, 0);
@@ -141,7 +147,16 @@ ion-icon{
   }
 
   .uno{
+    margin-top: 30px;
     margin-left: 80px;
     margin-bottom: 50px;
+  }
+
+  .este{
+    position: relative;
+  }
+
+  ion-content{
+    text-align: right;
   }
 }

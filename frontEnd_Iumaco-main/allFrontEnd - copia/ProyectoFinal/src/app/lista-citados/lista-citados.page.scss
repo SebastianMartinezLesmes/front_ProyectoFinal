@@ -93,6 +93,24 @@ ion-content {
             }
         }
     }
+
+    ion-item{
+
+        button{
+            margin: 10px;
+            width: 160px;
+            height: 45px;
+            font-size: 18px;
+            border-radius: 10px; 
+            color: white;
+            background-color: #39A900;
+        }
+        button:hover{
+            color: rgb(57, 169, 0);
+            background-color: transparent;
+            border: 3px solid  rgb(57, 169, 0);
+        }
+    }
 }
 
 #titleX, ion-card-title, #linkCorreo {

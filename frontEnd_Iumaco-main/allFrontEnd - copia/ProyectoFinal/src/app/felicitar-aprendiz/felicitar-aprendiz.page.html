@@ -4,13 +4,12 @@
       <h3> IUMACO </h3> 
       <div id="logo"><img src="../../assets/sena.png" class="logo"></div>
       <div class="custom-button" slot="end">
-        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Volver</ion-button>
+        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Página principal</ion-button>
         <ion-button fill="clear" class="botonsesion"   (click)="confirmarSalida()">Cerrar sesión</ion-button>
       </div>
     </ion-item>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content [fullscreen]="true" class="centered-container">
   <div class="center">
@@ -38,7 +37,7 @@
     
             <ion-item class="cuadro">
               <ion-label for="fichas">Fichas:</ion-label>
-              <ion-select id="fichas" [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
+              <ion-select [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
                 <ion-select-option *ngFor="let ficha of fichasUnicas" [value]="ficha">{{ ficha }}</ion-select-option>
               </ion-select>
             </ion-item><br>

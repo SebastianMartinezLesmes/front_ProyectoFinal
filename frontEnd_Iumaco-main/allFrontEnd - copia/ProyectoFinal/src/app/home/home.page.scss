@@ -73,6 +73,7 @@ ion-card-content{
   bottom: 0;
   right: 0;
   margin: 1px;
+  z-index: -1; /* Coloca la imagen detrás del contenido */
 }
 .center{
   text-align: center;

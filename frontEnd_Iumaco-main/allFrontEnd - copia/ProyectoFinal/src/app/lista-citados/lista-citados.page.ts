@@ -56,6 +56,9 @@ export class ListaCitadosPage implements OnInit {
   newId: number = 0;
 
   listaDB: any = [];
+  listaDBactivo: any = [];
+  cambioLista = false;
+
   asunto: string = '';
   perm: any = '';
 
@@ -118,6 +121,11 @@ export class ListaCitadosPage implements OnInit {
 
   Atentamente,
   Coordinación Académica`};
+
+  cambioListas(){
+    if(this.cambioLista === false){ this.cambioLista = true}
+    else if( this.cambioLista === true){ this.cambioLista = false} 
+  }
 
   actualizarDias(mes: string) {
     let esBisiesto = false;
@@ -197,11 +205,15 @@ export class ListaCitadosPage implements OnInit {
       (response) => {
         console.log('Respuesta del servidor:', response);
         this.listaDB = response;
+  
+        // Filtra los usuarios activos
+        this.listaDBactivo = this.listaDB.filter((u: any) => u.estado === 'activo');
+  
       },
       (error) => {
         console.error('Error al obtener datos del servidor:', error);
       }
-    )
+    );
   };
 
   /* Aca estan los parametros para los botones de salida y paguina anterior de la paguina*/
@@ -329,9 +341,10 @@ export class ListaCitadosPage implements OnInit {
 
   deletePeticion(){
     const idToDelete = this.newId; // Aquí debes asignar el valor del ID que deseas enviar
+    let accion = this.asunto;
 
     // Define los datos que deseas enviar al servidor
-    const data = {id: idToDelete };
+    const data = {id: idToDelete, accion: accion };
     console.log(data.id);
 
     // Realiza la solicitud POST al servidor PHP
