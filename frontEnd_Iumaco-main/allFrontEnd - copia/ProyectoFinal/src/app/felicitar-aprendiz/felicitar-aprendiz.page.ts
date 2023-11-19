@@ -33,6 +33,8 @@ export class FelicitarAprendizPage implements OnInit {
   }; 
 
   /* Aca estan los parametros para los botones de salida y paguina anterior de la paguina*/
+  citacionComite() { this.router.navigate(['/citacion-comite', { data: this.idInstructor }]); }
+  llamadoAtencion() { this.router.navigate(['/llamado-atencion', { data: this.idInstructor }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructor }]); }
   async confirmarSalida() {
     const alert = await this.alertController.create({
@@ -193,26 +195,23 @@ export class FelicitarAprendizPage implements OnInit {
   fromData = {
     nota: '',
     ficha: 0,
+    instructorFK: 0,
     aprendizFK: 0,
   }
 
   insertListaFelicitaciones() {
     this.informacionAprendiz();
+    this.fromData.instructorFK = this.idInstructor; // dato instructor
     console.log(this.fromData); 
 
     // Ajusta la URL y anexa los datos como parámetros GET
-    const url = `http://localhost/iumaco_db/insertListaFelicitaciones.php?ficha=${this.fromData.ficha}&aprendizFK=${this.fromData.aprendizFK}&nota=${this.fromData.nota}`;
+    const url = `http://localhost/iumaco_db/insertListaFelicitaciones.php?ficha=${this.fromData.ficha}&aprendizFK=${this.fromData.aprendizFK}&instructorFK=${this.fromData.instructorFK}&nota=${this.fromData.nota}`;
     axios.get(url)
       .then((response) => {
         console.log(response.data);
 
-        if(response.data === 1){
-          this.presentAlert("Subida exitosa", " Correo enviado exitosamente");
-          
-        }else{
-          this.presentAlert("Subida fallida", "");
-          
-        }
+        if(response.data === 1){ this.presentAlert("Subida exitosa", ""); }
+        else{ this.presentAlert("Subida fallida", ""); }
         // Maneja la respuesta del servidor aquí
       })
       .catch((error) => {
@@ -245,7 +244,6 @@ export class FelicitarAprendizPage implements OnInit {
           console.error('Error al enviar el correo', error);
         }
       )
-      this.insertListaFelicitaciones();
     }
   };
 

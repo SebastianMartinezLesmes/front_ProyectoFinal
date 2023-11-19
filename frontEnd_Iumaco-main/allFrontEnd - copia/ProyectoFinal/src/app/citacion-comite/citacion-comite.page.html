@@ -4,7 +4,7 @@
       <h3> IUMACO </h3> 
       <div id="logo"><img src="../../assets/sena.png" class="logo"></div>
       <div class="custom-button" slot="end">
-        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Volver</ion-button>
+        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Página principal</ion-button>
         <ion-button fill="clear" class="botonsesion"   (click)="confirmarSalida()">Cerrar sesión</ion-button>
       </div>
     </ion-item>
@@ -17,38 +17,70 @@
   </div> 
   
     <div id="formulario">
-    <div id="formularioCitacionComite">
-      
-      <form action="enviar.php" method="POST" enctype="multipart/form-data">
+      <ion-row>
 
-        <ion-item class="cuadro">
-          <ion-label for="fichas">Fichas:</ion-label>
-          <ion-select id="fichas" [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
-            <ion-select-option *ngFor="let ficha of fichasUnicas" [value]="ficha">{{ ficha }}</ion-select-option>
-          </ion-select>
-        </ion-item><br>
+        <ion-col>
+          <ion-card class="uno" (click)="felicitarAprendiz()" >
+            <ion-card-header>
+              <ion-icon  name="ribbon-outline" id="icon1"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              Felicitaciones 
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
         
-        <ion-item class="cuadro">
-          <ion-label for="destinatario">Aprendices como destinatario:</ion-label>
-          <ion-select id="destinatario" [(ngModel)]="destinatario" name="destinatario" multiple="false" (ionChange)="informacionAprendiz()">
-            <ion-select-option *ngFor="let destinatario of destinatarios" [value]="destinatario.email">{{ destinatario }}</ion-select-option>
-          </ion-select>
-        </ion-item><br> 
-      
-        <ion-item class="cuadro">
-          <ion-label position="floating">cargos:</ion-label>
-          <ion-textarea [(ngModel)]="fromData.nota" id="nota" name="nota"></ion-textarea>
-        </ion-item><br>
+        <ion-col>
+          <div id="formularioCitacionComite">
+            <div id="formularioFelicitar">
+          
+              <form method="POST">
+    
+                <ion-item class="cuadro">
+                  <ion-label for="fichas">Fichas:</ion-label>
+                  <ion-select id="fichas" [(ngModel)]="fichaSeleccionada" name="fichaSeleccionada" (ionChange)="filtrarDestinatarios()">
+                    <ion-select-option *ngFor="let ficha of fichasUnicas" [value]="ficha">{{ ficha }}</ion-select-option>
+                  </ion-select>
+                </ion-item><br>
+                
+                <ion-item class="cuadro">
+                  <ion-label for="destinatario">Aprendices como destinatario:</ion-label>
+                  <ion-select id="destinatario" [(ngModel)]="destinatario" name="destinatario" multiple="false" (ionChange)="informacionAprendiz()">
+                    <ion-select-option *ngFor="let destinatario of destinatarios" [value]="destinatario.email">{{ destinatario }}</ion-select-option>
+                  </ion-select>
+                </ion-item><br>
+        
+                <ion-item class="cuadro">
+                  <ion-label position="floating">Nota:</ion-label>
+                  <ion-textarea [(ngModel)]="nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
+                </ion-item><br>
 
-        <ion-item class="cuadro">
-          <ion-label position="floating">link de evidencia:</ion-label>
-          <ion-textarea [(ngModel)]="fromData.linkEvidencias" id="link" name="link"></ion-textarea>
-        </ion-item><br>
-      
-        <input type="submit" value="Enviar" (click)="enviarCorreo()">
-      </form>
-      
-    </div>
+                <ion-item class="cuadro">
+                  <ion-label position="floating">Link Evidencias:</ion-label>
+                  <ion-input [(ngModel)]="fromData.linkEvidencias" id="linkEvidencias" name="linkEvidencias" rows="4" cols="30"></ion-input>
+                </ion-item><br>
+          
+                <input type="submit" value="Enviar" (click)="enviarCorreo()">
+              </form>
+              
+            </div>
+          </div>
+        </ion-col>
+  
+        <ion-col>
+  
+          <ion-card class="uno" (click)="llamadoAtencion()" >
+            <ion-card-header>
+              <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              Llamado de Atencion 
+            </ion-card-content>
+          </ion-card>
+  
+        </ion-col>
+      </ion-row>
+
   </div>
 
   <pre>

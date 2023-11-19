@@ -1,29 +1,27 @@
 //encabezado
 .pop{
   --background: rgb(57, 169, 0);
-  
 }
 h1{
   text-align: center;
   font-size: 30px;
   position: absolute;
   margin-top: -400px;
-
 }
 h3{
   margin-left: 20px;
   font-size: 22px;
- color:#FFFFFF
+  color:#FFFFFF
 }
 .logo{
   height: 70px;
   padding-left: 690px;
-  
 }
 .botonsesion{
   --color:#ffffff;
   height: 40px;
   border-radius: 10px;
+  font-size: 15px;
 }
 .botonsesion:hover{
   --color: rgb(57, 169, 0);
@@ -58,7 +56,6 @@ h3{
 }
 
 h2 {
- 
   text-align: center;
   font-size: 30px;
   margin-top: 50px;
@@ -95,11 +92,55 @@ input[type="submit"]:hover {
   bottom: 0;
   right: 0;
   margin: 1px;
+  z-index: -1; /* Coloca la imagen detrás del contenido */
 }
 .center{
   text-align: center;
 }
+
+ion-icon{
+  margin-left: 35px;
+  width: 120px;
+  height: 160px;
+}
+.uno{
+  border: 3px solid  rgb(57, 169, 0);
+  margin-top: 50px;
+  margin-left: 150px;
+  text-align: center;
+  border-radius: 30px;
+  width: 240px;
+  height: 280px;
+  justify-content: center;
+
+  ion-card-content{
+    font-size: 30px;
+    margin: -15px;
+  }
+}
+.uno:hover, .two:hover, .tre:hover{
+  background-color: rgb(57, 169, 0);
+  color: white;
+  cursor: pointer;
+  ion-icon{
+    color: white;
+  }
+}
+
 @media screen and (max-width: 500px){
-  
-  
+
+  .uno{
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-bottom: 50px;
+  }
+
+  .este{
+    position: relative;
+  }
+
+  ion-content{
+    text-align: right;
+  }
+
 }

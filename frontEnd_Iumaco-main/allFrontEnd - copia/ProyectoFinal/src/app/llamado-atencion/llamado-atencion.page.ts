@@ -37,6 +37,8 @@ export class LlamadoAtencionPage implements OnInit {
     await alert.present();
   };
 
+  felicitarAprendiz() { this.router.navigate(['felicitar-aprendiz', { data: this.idInstructorRecived }]); }
+  citacionComite() { this.router.navigate(['/citacion-comite', { data: this.idInstructorRecived }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructorRecived }]); }
   async confirmarSalida() {
     const alert = await this.alertController.create({
@@ -215,7 +217,7 @@ export class LlamadoAtencionPage implements OnInit {
       this.presentAlert("Campo vacío", "Por escriba un mensaje en el espacio de nota.");
     }else{
       this.enviarCoorreos();
-      this.insertListaFelicitaciones();
+      this.insertListaLlamados();
     }
   }
 
@@ -223,14 +225,16 @@ export class LlamadoAtencionPage implements OnInit {
     nota: '',
     ficha: 0,
     aprendizFK: 0,
+    instructorFK: 0,
   }
 
-  insertListaFelicitaciones() {
+  insertListaLlamados() {
     this.informacionAprendiz();
+    this.fromData.instructorFK = this.idInstructorRecived; // dato instructor
     console.log(this.fromData); 
 
     // Ajusta la URL y anexa los datos como parámetros GET
-    const url = `http://localhost/iumaco_db/insertListaLlamadoAtencion.php?ficha=${this.fromData.ficha}&aprendizFK=${this.fromData.aprendizFK}&nota=${this.fromData.nota}`;
+    const url = `http://localhost/iumaco_db/insertListaLlamadoAtencion.php?ficha=${this.fromData.ficha}&aprendizFK=${this.fromData.aprendizFK}&instructorFK=${this.fromData.instructorFK}&nota=${this.fromData.nota}`;
     axios.get(url)
       .then((response) => {
         console.log(response.data);
@@ -271,7 +275,6 @@ export class LlamadoAtencionPage implements OnInit {
           console.error('Error al enviar el correo', error);
         }
       )
-      this.insertListaFelicitaciones();
     }
   };
 }

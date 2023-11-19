@@ -56,6 +56,10 @@ ion-col {
         border-radius: 10px;
         border: 2px solid #39A900;
         color: grey;
+
+        ion-icon{
+          margin-top: 15px;
+        }
       }
 
       button {
@@ -107,9 +111,8 @@ ion-col {
   border: 4px solid #ffff;
   border-radius: 10px;
   padding-top: 40px;
-
-
   }
+
   #circulo{
     border: 2px solid #ffff;
     margin-bottom: -50px;
@@ -123,5 +126,9 @@ ion-col {
   }
   .respo{
     text-align: center ;
+  }
+
+  button{
+    border: 4px solid #ffff;
   }
 }

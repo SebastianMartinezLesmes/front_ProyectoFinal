@@ -24,6 +24,12 @@ export class LoginPage implements OnInit {
   fechaActual = new Date();
   fechaFormateada = this.fechaActual.getFullYear();
 
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   async presentAlert(title: string, message: string) {
     const alert = await this.alertController.create({
       header: title,
@@ -44,7 +50,7 @@ export class LoginPage implements OnInit {
   };
 
   login() {
-    const inputUsername = this.username;
+    const inputUsername = String(this.username);
     const inputPassword = this.password;
     const user = this.usuariosDB.find((u: any) => u.numeroTI === inputUsername && u.credenciales === inputPassword);
 
@@ -69,18 +75,21 @@ export class LoginPage implements OnInit {
     else{
       if (user) {
         // Las credenciales son correctas, verificar el valor del campo "cargo"
-        if (user.cargo === 'instructor') {
-          this.id = user.IdUsuario;
-          this.limpiar();
-          this.router.navigate(['/home', { data: this.id }]);
-        } else if (user.cargo === 'coordinador') {
-          // Usuario coordinador
-          this.id = user.IdUsuario;
-          this.limpiar();
-          this.router.navigate(['/home-coordinador', { data: this.id }]);
-        } else if (user.cargo === 'aprendiz'){
-          // Cargo aprendiz
-          this.presentAlert("Acceso denegado", "Los aprendices no tienen autorización para acceder a esta página");
+        if(user.estado === 'inactivo'){ this.presentAlert("Acceso denegado", "Usuario inactivo"); }
+        else{
+          if (user.cargo === 'instructor') {
+            this.id = user.IdUsuario;
+            this.limpiar();
+            this.router.navigate(['/home', { data: this.id }]);
+          } else if (user.cargo === 'coordinador') {
+            // Usuario coordinador
+            this.id = user.IdUsuario;
+            this.limpiar();
+            this.router.navigate(['/home-coordinador', { data: this.id }]);
+          } else if (user.cargo === 'aprendiz'){
+            // Cargo aprendiz
+            this.presentAlert("Acceso denegado", "Los aprendices no tienen autorización para acceder a esta página");
+          }
         }
       } else { this.presentAlert("usuario inexistente", ""); }
     }
