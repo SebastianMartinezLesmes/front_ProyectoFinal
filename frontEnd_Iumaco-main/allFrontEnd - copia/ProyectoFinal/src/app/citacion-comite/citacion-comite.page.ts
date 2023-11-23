@@ -21,6 +21,7 @@ export class CitacionComitePage implements OnInit {
     this.idInstructor = this.route.snapshot.paramMap.get('data');
     this.obtenerFichasUnicas(); 
     this.getUser(); 
+    this.getHistorialS();
     this.getfromData();
     this.permiso();
   }
@@ -39,6 +40,25 @@ export class CitacionComitePage implements OnInit {
   felicitarAprendiz() { this.router.navigate(['felicitar-aprendiz', { data: this.idInstructor }]); }
   llamadoAtencion() { this.router.navigate(['/llamado-atencion', { data: this.idInstructor }]); }
   volver(){ this.router.navigate(['/home', { data: this.idInstructor }]); }
+
+  historialSolicitud = false;
+  reSolicitud: any = [];
+  gHistorialSolicitud: any = [];
+  getHistorialS() {
+    this.http.get('http://localhost/iumaco_db/getListaSolicitudes.php').subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        this.reSolicitud = response;
+        this.gHistorialSolicitud = this.reSolicitud.filter((u: any) => u.instructorFK === this.idInstructor);
+      },(error) => {console.error('Error al obtener datos del servidor:', error);}
+    )
+  };
+  cambiarEstadoS(){
+    this.getHistorialS();
+    if(this.historialSolicitud === false){this.historialSolicitud = true;}
+    else{ this.historialSolicitud = false}
+  }
+
   async confirmarSalida() {
     const alert = await this.alertController.create({
       header: 'Confirmar salida',

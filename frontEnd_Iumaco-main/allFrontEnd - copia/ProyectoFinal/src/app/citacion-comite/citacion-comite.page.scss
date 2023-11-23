@@ -1,58 +1,60 @@
 //encabezado
 .pop{
   --background: rgb(57, 169, 0);
-  
 }
 h1{
   text-align: center;
   font-size: 30px;
   position: absolute;
   margin-top: -400px;
-
 }
 h3{
   margin-left: 20px;
   font-size: 22px;
- color:#FFFFFF
+  color:#FFFFFF
 }
 .logo{
   height: 70px;
   padding-left: 690px;
-  
 }
 .botonsesion{
   --color:#ffffff;
   height: 40px;
   border-radius: 10px;
+  font-size: 15px;
 }
 .botonsesion:hover{
-  background-color: white;
   --color: rgb(57, 169, 0);
+  background-color: white;
+  margin-right: 5px;
 }
-
 //cuerpo
 .centered-container {
   display: flex;
+  align-items: center;
   height: 100%;
   padding-left: 10px;
 }
 
-#formulario{
-  padding-top: 50px;
-  margin-top: 60px;
+#botonesRutas {
+  text-align: right;
+  padding-right: 10px;
+  display: flex;
 }
 
-#formularioCitacionComite {
-  width: 400px;
+#formularioFelicitar {
+  width: 650px;
+  height: 450;
   margin: 0 auto;
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(57, 169, 0);
+  margin-top: 95px;
 }
 
 h2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   margin-top: 50px;
   border-bottom: 2px solid black;
   display: inline-block;
@@ -60,21 +62,6 @@ h2 {
 
 form {
   margin-top: 20px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  background-color: transparent;
-}
-select, textarea {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  background-color: #ffffff;
-  color: black;
-  border-radius: 5px;
 }
 
 input[type="submit"] {
@@ -86,17 +73,15 @@ input[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
 }
-input:hover{
+
+input[type="submit"]:hover {
   background-color: white;
   color: rgb(57, 169, 0);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.cuadro, #imagenEvidencia{
+.cuadro{
   border-radius: 5px;
-}
-
-pre{
-  color: black;
 }
 
 .este{
@@ -111,24 +96,27 @@ pre{
 }
 
 ion-icon{
-  margin-left: 35px;
-  width: 120px;
-  height: 160px;
+ 
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+h4{
+  font-size: 20px;
+  position: absolute;
+  margin-top: -35px;
+  margin-left: 60px;
 }
 .uno{
   border: 3px solid  rgb(57, 169, 0);
-  margin-top: 50px;
+  margin-top: 90px;
   margin-left: 150px;
-  text-align: center;
-  border-radius: 30px;
-  width: 240px;
-  height: 280px;
+  border-radius: 20px;
+  width: 290px;
+  height: 60px;
   justify-content: center;
 
-  ion-card-content{
-    font-size: 30px;
-    margin: -15px;
-  }
 }
 .uno:hover, .two:hover, .tre:hover{
   background-color: rgb(57, 169, 0);
@@ -139,19 +127,8 @@ ion-icon{
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 500px){
 
-  h2 {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 50px;
-    border-bottom: 2px solid black;
-    display: inline-block;
-  }
-  #formulario{
-    padding-top: 30px;
-    margin-top: 40px;
-  }
   .uno{
     margin-top: 30px;
     margin-left: 80px;
@@ -165,4 +142,5 @@ ion-icon{
   ion-content{
     text-align: right;
   }
+
 }

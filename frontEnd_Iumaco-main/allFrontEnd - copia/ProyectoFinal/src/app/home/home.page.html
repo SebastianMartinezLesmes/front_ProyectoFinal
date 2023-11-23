@@ -29,21 +29,8 @@
             Felicitaciones 
           </ion-card-content>
         </ion-card>
-        <br><br>
-        <ion-button (click)="cambiarEstadoF()"> historial Felicitaciones  </ion-button>
-        <br><br>
-
-        <div *ngIf="historialFelicitar === true">
-          <ion-card  *ngFor="let F of gHistorialFelicitar" >
-            <ion-item>
-              Nota: {{F.nota}}<br>
-              Id del aprendiz:{{F.aprendizFK}}<br>
-              Fecha: {{F.fecha}}<br>
-            </ion-item>
-          </ion-card>
-        </div>
-
       </ion-col>
+      
       <ion-col>
         <ion-card class="uno" (click)="llamadoAtencion()" >
           <ion-card-header>
@@ -53,21 +40,8 @@
             Llamado de Atencion 
           </ion-card-content>
         </ion-card>
-        <br><br>
-        <ion-button (click)="cambiarEstadoL()"> historial Llamado de Atencion </ion-button>
-        <br><br>
-
-        <div *ngIf="historialLlamado === true">
-          <ion-card  *ngFor="let L of gHistorialLlamado" >
-            <ion-item>
-              Nota: {{L.nota}}<br>
-              Id del aprendiz:{{L.aprendizFK}}<br>
-              Fecha: {{L.fecha}}<br>
-            </ion-item>
-          </ion-card>
-        </div>
-
       </ion-col>
+
       <ion-col>
         <ion-card class="uno" (click)="citacionComite()">
           <ion-card-header>
@@ -77,22 +51,6 @@
             Solicitud para comite
           </ion-card-content>
         </ion-card>
-        <br><br>
-        <ion-button (click)="cambiarEstadoS()"> historial Solicitud para comite </ion-button>
-        <br><br>
-
-        <div *ngIf="historialSolicitud === true">
-
-          <ion-card  *ngFor="let S of gHistorialSolicitud" >
-            <ion-item>
-              Cargos: {{S.nota}}<br>
-              Id del aprendiz:{{S.aprendizFK}}<br>
-              Link de Evidencias: {{S.linkEvidencias}}<br>
-            </ion-item>
-          </ion-card>
-
-        </div>
-        
       </ion-col>
     </ion-row>
 

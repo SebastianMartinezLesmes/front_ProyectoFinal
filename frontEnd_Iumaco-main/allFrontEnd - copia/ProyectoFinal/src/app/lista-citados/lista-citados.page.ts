@@ -77,6 +77,7 @@ export class ListaCitadosPage implements OnInit {
     fechaCitacion: '', 
   };
 
+  men: string = ' Mostrar Historial ';
   mensajeSend: string = '';
   destinatarios: string = '';
 
@@ -123,8 +124,14 @@ export class ListaCitadosPage implements OnInit {
   Coordinación Académica`};
 
   cambioListas(){
-    if(this.cambioLista === false){ this.cambioLista = true}
-    else if( this.cambioLista === true){ this.cambioLista = false} 
+    if(this.cambioLista === false){ 
+      this.cambioLista = true;
+      this.men = ' Mostrar Peticiones ';
+    }
+    else if( this.cambioLista === true){ 
+      this.cambioLista = false;
+      this.men = ' Mostrar Historial ';
+    } 
   }
 
   actualizarDias(mes: string) {
@@ -327,6 +334,7 @@ export class ListaCitadosPage implements OnInit {
 
               //despues se borra la informacion de la lista de peticiones y vuelve a cargar las card's
               this.deletePeticion();
+              this.router.navigate(['/lista-citados', {data: this.perm, dat: 'omitir'}]);
               this.getList();
             }
           }

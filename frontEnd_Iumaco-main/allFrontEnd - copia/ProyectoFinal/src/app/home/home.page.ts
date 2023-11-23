@@ -26,52 +26,16 @@ export class HomePage implements OnInit {
     )
   };
 
-  historialLlamado = false;
-  reLlamado: any = [];
-  gHistorialLlamado: any = [];
-  getHistorialL() {
-    this.http.get('http://localhost/iumaco_db/getListaLlamado.php').subscribe(
-      (response) => {
-        console.log('Respuesta del servidor:', response);
-        this.reLlamado = response;
-        this.gHistorialLlamado = this.reLlamado.filter((u: any) => u.instructorFK === this.id);
-      },(error) => {console.error('Error al obtener datos del servidor:', error);}
-    )
-  };
-
-  historialSolicitud = false;
-  reSolicitud: any = [];
-  gHistorialSolicitud: any = [];
-  getHistorialS() {
-    this.http.get('http://localhost/iumaco_db/getListaSolicitudes.php').subscribe(
-      (response) => {
-        console.log('Respuesta del servidor:', response);
-        this.reSolicitud = response;
-        this.gHistorialSolicitud = this.reSolicitud.filter((u: any) => u.instructorFK === this.id);
-      },(error) => {console.error('Error al obtener datos del servidor:', error);}
-    )
-  };
-
   ngOnInit(){}
   constructor(private router: Router, private alertController: AlertController,private route: ActivatedRoute, private http:HttpClient) {
     this.id = this.route.snapshot.paramMap.get('data');
-    this.getHistorialS();
-    this.getHistorialL();
-    this.getHistorialF();
     this.permiso();
   }    
-
+  
   cambiarEstadoF(){
+    this.getHistorialF();
     if(this.historialFelicitar === false){this.historialFelicitar = true;}
     else{ this.historialFelicitar = false}
-  }
-  cambiarEstadoL(){
-    if(this.historialLlamado === false){this.historialLlamado = true;}
-    else{ this.historialLlamado = false}
-  }
-  cambiarEstadoS(){
-    if(this.historialSolicitud === false){this.historialSolicitud = true;}
-    else{ this.historialSolicitud = false}
   }
 
   /* Aca estan los parametros para los botones de navegacion hacia los formularios que envian los correos*/
@@ -98,7 +62,8 @@ export class HomePage implements OnInit {
   
     await alert.present();
   };  
+
   permiso(){
-    if (this.id === '' || this.id === null){this.router.navigate(['/login']); }
+    if (this.id === '' || this.id === null){ this.router.navigate(['/login'])}
   }
 }

@@ -4,7 +4,7 @@
       <h3> IUMACO </h3> 
       <div id="logo"><img src="../../assets/sena.png" class="logo"></div>
       <div class="custom-button" slot="end">
-        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Página principal</ion-button>
+        <ion-button fill="clear"  class="botonsesion"  (click)="volver()">Inicio</ion-button>
         <ion-button fill="clear" class="botonsesion"   (click)="confirmarSalida()">Cerrar sesión</ion-button>
       </div>
     </ion-item>
@@ -19,21 +19,46 @@
     
     <ion-row>
 
-      <ion-col>
+      <ion-col size="4">
         <ion-card class="uno" (click)="llamadoAtencion()" >
-          <ion-card-header>
-            <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
-          </ion-card-header>
-          <ion-card-content>
-            Llamado de Atencion 
-          </ion-card-content>
+          <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
+          <h4>Llamado de Atencion </h4>        
+        </ion-card>
+        <ion-card class="uno"(click)="cambiarEstadoF()" *ngIf="historialFelicitar !== true">
+          <ion-icon name="list-outline"></ion-icon>
+          <h4>Historial de Felicitación </h4>
+        </ion-card>
+        <ion-card class="uno"(click)="cambiarEstadoF()" *ngIf="historialFelicitar === true">
+          <ion-icon  name="ribbon-outline" id="icon1"></ion-icon>
+          <h4>Formulario Felicitación</h4>
+        </ion-card>
+        <ion-card class="uno" (click)="citacionComite()">
+          <ion-icon name="reader-outline" id="icon3"></ion-icon>
+          <h4>Solicitud para comite</h4>
         </ion-card>
       </ion-col>
       
-      <ion-col>
+      <ion-col size="8">
         <div id="formularioFelicitar">
+
+          <div *ngIf="historialFelicitar === true" class="cuadro">
+            
+            <ion-item *ngIf="gHistorialFelicitar.lenght < 1">
+              <p>Sin Felicitaciones</p>
+            </ion-item>
+            
+            <ion-card  *ngFor="let F of gHistorialFelicitar" >
+              <ion-item>
+                <P slot="start">Id del aprendiz:{{F.aprendizFK}}</P>
+                <P slot="end">Fecha: {{F.fecha}}</P>
+              </ion-item>
+              <ion-item>
+                Nota: {{F.nota}}
+              </ion-item>
+            </ion-card>
+          </div>
       
-          <form method="POST">
+          <form method="POST" *ngIf="historialFelicitar !== true">
     
             <ion-item class="cuadro">
               <ion-label for="fichas">Fichas:</ion-label>
@@ -60,18 +85,7 @@
         </div>
       </ion-col>
 
-      <ion-col>
-
-        <ion-card class="uno" (click)="citacionComite()">
-          <ion-card-header>
-            <ion-icon name="reader-outline" id="icon3"></ion-icon>
-          </ion-card-header>
-          <ion-card-content>
-            Solicitud para comite
-          </ion-card-content>
-        </ion-card>
-
-      </ion-col>
+      
     </ion-row>
   </div>
 

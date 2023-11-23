@@ -21,7 +21,8 @@
             <ion-item>
               <ion-label position="floating">Contraseña</ion-label>
               <ion-input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-              <ion-icon name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+              <ion-icon *ngIf="showPassword === false" name="eye" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+              <ion-icon *ngIf="showPassword !== false" name="eye-off" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
             </ion-item>
             
             <button expand="full" type="submit">Iniciar sesión</button>

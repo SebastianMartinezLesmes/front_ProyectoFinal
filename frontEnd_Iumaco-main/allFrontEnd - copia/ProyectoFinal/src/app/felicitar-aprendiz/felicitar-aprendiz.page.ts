@@ -18,6 +18,7 @@ export class FelicitarAprendizPage implements OnInit {
     private alertController: AlertController)
     { this.idInstructor = this.route.snapshot.paramMap.get('data');
       this.obtenerFichasUnicas(); 
+      this.getHistorialF();
       this.getUser(); 
       this.permiso();
     }
@@ -180,8 +181,25 @@ export class FelicitarAprendizPage implements OnInit {
     )
   };
 
+  historialFelicitar = false;
+  reFelicitar: any = [];
+  gHistorialFelicitar: any = [];
+  getHistorialF() {
+    this.http.get('http://localhost/iumaco_db/getListaFelicitaciones.php').subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        this.reFelicitar = response;
+        this.gHistorialFelicitar = this.reFelicitar.filter((u: any) => u.instructorFK === this.idInstructor);
+      },(error) => {console.error('Error al obtener datos del servidor:', error);}
+    )
+  };
+  cambiarEstadoF(){
+    if(this.historialFelicitar === false){this.historialFelicitar = true;}
+    else{ this.historialFelicitar = false}
+  };
+
    /* Aca se prueba la funcionalidad del formulario*/
-   enviarCorreo() {
+  enviarCorreo() {
     if (this.destinatario === ""){
       this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
     }else if( this.nota === ''){  

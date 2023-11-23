@@ -23,6 +23,7 @@ export class DocumentosEditPage implements OnInit {
     this.ca = this.route.snapshot.paramMap.get('ca');
     this.ci = this.route.snapshot.paramMap.get('ci');
     this.a = this.route.snapshot.paramMap.get('aprendiz');
+    this.idA =this.route.snapshot.paramMap.get('idA');
     this.td = this.route.snapshot.paramMap.get('td');
     this.nt = this.route.snapshot.paramMap.get('nt');
     this.fc = this.route.snapshot.paramMap.get('fc');
@@ -44,6 +45,7 @@ export class DocumentosEditPage implements OnInit {
   ca: any = '';
   ci: any = '';
   a: any = '';
+  idA: any = '';
   td: any = '';
   nt: any = '';
   fc: any = '';
@@ -148,9 +150,31 @@ export class DocumentosEditPage implements OnInit {
 
       this.data.newId = this.idCita;
       this.data.newDecision = this.d;
+
+      //Actualiza Usuarios si la decicion es cancelar matricula
+      if (this.selectedOption === "Cancelar Matricula"){
+        const url2 = `http://localhost/iumaco_db/updateListaUsuarios.php?newId=${this.idA}`;
+        axios.get(url2)
+          .then((response) => {
+            console.log(response.data);
+  
+            if(response.data == 1){
+              this.presentAlert("Actualización de usuario exitosa", "");
+  
+            }else{
+              this.presentAlert("Actualizacion de usuario fallida", "");
+            }
+            // Maneja la respuesta del servidor aquí
+          })
+          .catch((error) => {
+            console.error(error);
+            // Maneja errores aquí
+          }
+        );
+      }
       
-      // Ajusta la URL y anexa los datos como parámetros GET
-      const url = `http://localhost/iumaco_db/updateListaCitaciones.php?newId=${this.data.newId}&newDecision="${this.data.newDecision}"`;
+      // Actualiza ListaCitaciones
+      const url = `http://localhost/iumaco_db/updateListaCitaciones.php?newId=${this.data.newId}&newDecision=${this.data.newDecision}`;
       axios.get(url)
         .then((response) => {
           console.log(response.data);
@@ -174,13 +198,11 @@ export class DocumentosEditPage implements OnInit {
         .catch((error) => {
           console.error(error);
           // Maneja errores aquí
-        }
-      );
-
+          } 
+        );
       }
     }
-    
-  }
+  };
 
   perm(){
     if (this.a === '' || this.a === null){this.router.navigate(['/login']); }

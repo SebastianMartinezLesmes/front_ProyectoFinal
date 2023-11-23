@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-documentos',
@@ -15,7 +15,6 @@ export class DocumentosPage implements OnInit {
     private route: ActivatedRoute,
     private alertController: AlertController,
     private http: HttpClient,
-    private navCtrl: NavController
   ) {
     this.getList();
     this.idCoordinador = this.route.snapshot.paramMap.get('data');
@@ -25,7 +24,25 @@ export class DocumentosPage implements OnInit {
   ngOnInit() {}
 
   listaDB: any = [];
+  listaDBnada: any = [];
+  listaDBacta: any = [];
+  listaDBcancelados: any = [];
   idCoordinador: any = '';
+
+  editable = 'todos';
+
+  cambiarEditableA(){
+    this.editable = 'acta' 
+  }
+  cambiarEditableC(){
+    this.editable = 'cancelar' 
+  }
+  cambiarEditableN(){
+    this.editable = 'nada' 
+  }
+  cambiarEditableT(){
+    this.editable = 'todos' 
+  }
 
   // Función para navegar a la página de edición con parámetros
   updateDecision(dat: any) {
@@ -34,6 +51,7 @@ export class DocumentosPage implements OnInit {
       idX: dat.idCita,
       ca: dat.correoAprendiz,
       ci: dat.correoInstructor,
+      idA: dat.idA,
       aprendiz: dat.aprendiz,
       td: dat.tipoDocumento,
       nt: dat.numeroTI,
@@ -95,10 +113,13 @@ export class DocumentosPage implements OnInit {
       (response) => {
         console.log('Respuesta del servidor:', response);
         this.listaDB = response;
+        this.listaDBnada = this.listaDB.filter((u: any) => u.decisionComite === null);
+        this.listaDBacta = this.listaDB.filter((u: any) => u.decisionComite === 'Acta de condicionamiento');
+        this.listaDBcancelados = this.listaDB.filter((u: any) => u.decisionComite === 'Cancelar Matricula');
       },
       (error) => {
         console.error('Error al obtener datos del servidor:', error);
       }
-    );
-  }
+    )
+  };
 }

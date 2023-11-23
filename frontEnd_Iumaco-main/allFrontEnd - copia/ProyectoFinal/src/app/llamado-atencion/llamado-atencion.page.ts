@@ -18,6 +18,7 @@ export class LlamadoAtencionPage implements OnInit {
     private route: ActivatedRoute)
   {
     this.obtenerFichasUnicas(); 
+    this.getHistorialL();
     this.getUser();
     this.getInstructor();
     this.informacionInstructor();
@@ -88,6 +89,24 @@ export class LlamadoAtencionPage implements OnInit {
 
   nombreInstructor:string = '';
   correoInstructor: string = '';
+
+  historialLlamado = false;
+  reLlamado: any = [];
+  gHistorialLlamado: any = [];
+  getHistorialL() {
+    this.http.get('http://localhost/iumaco_db/getListaLlamado.php').subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        this.reLlamado = response;
+        this.gHistorialLlamado = this.reLlamado.filter((u: any) => u.instructorFK === this.idInstructorRecived);
+      },(error) => {console.error('Error al obtener datos del servidor:', error);}
+    )
+  };
+  cambiarEstadoL(){
+    this.getHistorialL();
+    if(this.historialLlamado === false){this.historialLlamado = true;}
+    else{ this.historialLlamado = false}
+  }
 
   get cuerpo(): string { return `${this.fechaFormateada}
   Bogotá,
