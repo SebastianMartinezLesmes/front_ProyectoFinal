@@ -147,13 +147,13 @@
     </div>
   </div>
 
-  <div *ngIf="cambioLista === true">
+  <div *ngIf="cambioLista === true" id="historial">
     <div id="titleX">
       <h2><u> Historial </u></h2>
     </div><br>
 
-    <ion-card *ngFor="let l of listaDB">
-      <ion-card-header>
+    <div id="historial2">
+      <ion-card *ngFor="let l of listaDB">
 
         <ion-grid>
           <ion-row>
@@ -163,33 +163,31 @@
           </ion-row>
         </ion-grid>
         
-        
         <ion-item lines="none">
-          <ion-card-subtitle slot="start">Instructor: {{l.instructor}}</ion-card-subtitle>
-          <ion-card-subtitle slot="end">Correo: {{l.correoInstructor}}</ion-card-subtitle>
+          <ion-card-subtitle>Instructor: {{l.instructor}}</ion-card-subtitle><br>
+          <ion-card-subtitle>Correo: {{l.correoInstructor}}</ion-card-subtitle>
         </ion-item>
   
         <ion-item lines="none">
-          <ion-card-subtitle slot="start">Aprendiz:{{l.aprendiz}}</ion-card-subtitle>
-          <ion-card-subtitle slot="end">Correo:{{l.correoAprendiz}}</ion-card-subtitle>
-  
+          <ion-card-subtitle>Aprendiz:{{l.aprendiz}}</ion-card-subtitle><br>
+          <ion-card-subtitle>Correo:{{l.correoAprendiz}}</ion-card-subtitle>
         </ion-item>
-      </ion-card-header>
     
-      <ion-card-content>
         <ion-item lines="none">
-          <ion-card-subtitle id="linkeding" slot="start"><a href="{{l.linkEvidencias}}">Link de evidencias</a></ion-card-subtitle>
-          <ion-card-subtitle id="linkeding" slot="end">Fecha toma decisión: {{l.fechaAccion}}</ion-card-subtitle>
+          <ion-card-subtitle id="linkeding"><a href="{{l.linkEvidencias}}">Link de evidencias</a></ion-card-subtitle><br>
+          <ion-card-subtitle id="linkeding">Fecha toma decisión: {{l.fechaAccion}}</ion-card-subtitle>
         </ion-item>
         <ion-item lines="none">
-          <h3>Nota: {{l.nota}}</h3>
+          <ion-card-subtitle>Estado: {{l.estado}}</ion-card-subtitle><br>
+          <ion-card-subtitle>Acción tomada: {{l.accion}}</ion-card-subtitle>
         </ion-item>
         <ion-item lines="none">
-          <h3 slot="end">estado: {{l.estado}}</h3>
-          <h3 slot="start">Acción tomada: {{l.accion}}</h3>
+          <ion-card-subtitle>Nota:<br> {{l.nota}}</ion-card-subtitle>
+          
         </ion-item>
-      </ion-card-content>
+        
     </ion-card>
+    </div>
   </div>
 
 </ion-content>

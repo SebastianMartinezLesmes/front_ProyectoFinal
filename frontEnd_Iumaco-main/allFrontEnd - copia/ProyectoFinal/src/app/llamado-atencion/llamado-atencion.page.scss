@@ -130,17 +130,42 @@ h4{
 @media screen and (max-width: 500px){
 
   .uno{
-    margin-top: 30px;
-    margin-left: 80px;
-    margin-bottom: 50px;
+    border: 3px solid  rgb(57, 169, 0);
+    margin-top: 90px;
+    margin-left: 0;
+    border-radius: 20px;
+    width: 290px;
+    height: 60px;
+    justify-content: center;
   }
-
+  .respon{
+    padding-left: 15%;
+  }
   .este{
-    position: relative;
+    display: none;
   }
-
-  ion-content{
-    text-align: right;
+  #formularioFelicitar {
+    width: 400px;
+    height: 450;
   }
-
+  h2{
+    font-size: 30px;
+  }
+  h3{
+    font-size: 18px;
+  }
+  .botonsesion{
+    --color:#ffffff;
+    width: 140px;
+    height: 60px;
+    border-radius: 10px;
+    background: #39A900;
+    margin: 15px;
+    font-size: 15px;
+  }
+  .botonsesion:hover{
+    --color: white;
+    background-color: rgb(57, 169, 0);
+    border: 3px solid  white;
+  }
 }

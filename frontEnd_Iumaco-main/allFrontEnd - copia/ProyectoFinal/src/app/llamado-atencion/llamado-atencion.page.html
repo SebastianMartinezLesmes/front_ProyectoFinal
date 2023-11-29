@@ -19,10 +19,14 @@
     
     <ion-row>
 
-      <ion-col size="4">
+      <ion-col>
         <ion-card class="uno" (click)="felicitarAprendiz()" >
           <ion-icon  name="ribbon-outline" id="icon2"></ion-icon>
           <h4>Felicitación </h4>        
+        </ion-card>
+        <ion-card class="uno" (click)="citacionComite()">
+          <ion-icon name="reader-outline" id="icon3"></ion-icon>
+          <h4>Solicitud para comite</h4>
         </ion-card>
         <ion-card class="uno"(click)="cambiarEstadoL()" *ngIf="historialLlamado !== true">
           <ion-icon name="list-outline"></ion-icon>
@@ -32,13 +36,9 @@
           <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
           <h4>Formulario de Llamados</h4>
         </ion-card>
-        <ion-card class="uno" (click)="citacionComite()">
-          <ion-icon name="reader-outline" id="icon3"></ion-icon>
-          <h4>Solicitud para comite</h4>
-        </ion-card>
       </ion-col>
       
-      <ion-col size="8">
+      <ion-col>
         <div id="formularioFelicitar">
 
           <div *ngIf="historialLlamado === true" class="cuadro">
