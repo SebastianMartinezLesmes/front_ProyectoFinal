@@ -27,7 +27,8 @@ export class FelicitarAprendizPage implements OnInit {
     const alert = await this.alertController.create({
       header: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
+      mode: 'ios'
     });
   
     await alert.present();
@@ -51,7 +52,8 @@ export class FelicitarAprendizPage implements OnInit {
           text: 'Aceptar',
           handler: () => { this.router.navigate(['/login']); }
         }
-      ]
+      ],
+      mode: 'ios'
     });
   
     await alert.present();

@@ -30,7 +30,8 @@ export class CitacionComitePage implements OnInit {
     const alert = await this.alertController.create({
       header: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
+      mode: 'ios'
     });
   
     await alert.present();
@@ -73,7 +74,8 @@ export class CitacionComitePage implements OnInit {
           text: 'Aceptar',
           handler: () => { this.router.navigate(['/login']); }
         }
-      ]
+      ],
+      mode: 'ios'
     });
   
     await alert.present();

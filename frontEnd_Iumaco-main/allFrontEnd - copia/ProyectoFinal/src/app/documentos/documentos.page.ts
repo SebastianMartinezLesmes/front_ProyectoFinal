@@ -82,7 +82,7 @@ export class DocumentosPage implements OnInit {
             this.router.navigate(['/login']);
           }
         }
-      ]
+      ], mode: 'ios'
     });
     await alert.present();
   }

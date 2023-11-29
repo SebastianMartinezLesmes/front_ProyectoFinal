@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
     const alert = await this.alertController.create({
       header: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
+      mode: 'ios'
     });
   
     await alert.present();
@@ -69,7 +70,7 @@ export class LoginPage implements OnInit {
       }
     
       camposVacios = camposVacios.slice(0, -2); // Eliminar la coma y el espacio al final
-      if (cont === 2){ this.presentAlert("Los campos "+ camposVacios, "Son requeridos para ingresar a la paguina" ); }
+      if (cont === 2){ this.presentAlert("Los siguientes campos son requeridos para ingresar a la paguina",""+ camposVacios ); }
       else { this.presentAlert("El campo "+ camposVacios, "Es requerido para ingresar a la paguina" );}
     }
     else{

@@ -109,9 +109,9 @@ export class DocumentosEditPage implements OnInit {
     const alert = await this.alertController.create({
       header: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
+      mode: 'ios'
     });
-  
     await alert.present();
   }; 
 

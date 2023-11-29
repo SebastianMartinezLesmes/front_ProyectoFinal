@@ -187,7 +187,8 @@ export class ListaCitadosPage implements OnInit {
     const alert = await this.alertController.create({
       header: title,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
+      mode: 'ios'
     });
   
     await alert.present();
@@ -236,7 +237,7 @@ export class ListaCitadosPage implements OnInit {
       {
         text: 'Aceptar',
         handler: () => { this.router.navigate(['/login']); }
-      }]
+      }], mode: 'ios'
     });    await alert.present();
   };   
   volver(){ this.router.navigate(['/home-coordinador', { data: this.perm }]); }
@@ -276,7 +277,7 @@ export class ListaCitadosPage implements OnInit {
             this.getList();
           }
         }
-      ]
+      ], mode: 'ios'
     });  await alert.present();
   };  
 
@@ -338,7 +339,7 @@ export class ListaCitadosPage implements OnInit {
               this.getList();
             }
           }
-        ]
+        ], mode: 'ios'
       });  await alert.present();
     }
   };
@@ -410,4 +411,5 @@ export class ListaCitadosPage implements OnInit {
     )
     //otra acción
   };
+  irDocumentos(){this.router.navigate(['/documentos', { data: this.perm }]);}
 }

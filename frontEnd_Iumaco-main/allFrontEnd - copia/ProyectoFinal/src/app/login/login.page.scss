@@ -16,11 +16,6 @@
   #p2{ padding-top: 50px; font-size: 45px;}
 }
 
-.ios .alert-wrapper {
-  width: auto;
-  // Estilos específicos para iPhone
-}
-
 .ios .alert-button {
   width: auto;
   // Estilos específicos para los botones en iPhone
@@ -107,7 +102,7 @@ ion-col {
   justify-content: center;
   align-items: center;
 }
-@media screen and (max-width: 414px){
+@media screen and (max-width: 500px){
 
   ion-content{
     --background: #39A900;

@@ -20,13 +20,13 @@
     <ion-row>
 
       <ion-col>
-        <ion-card class="uno" (click)="llamadoAtencion()" >
-          <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
-          <h4>Llamado de Atencion </h4>        
-        </ion-card>
         <ion-card class="uno" (click)="felicitarAprendiz()" >
           <ion-icon  name="ribbon-outline" id="icon2"></ion-icon>
           <h4>Felicitación </h4>        
+        </ion-card>
+        <ion-card class="uno" (click)="llamadoAtencion()" >
+          <ion-icon name="thumbs-down-outline" id="icon2"></ion-icon>
+          <h4>Llamado de Atencion </h4>        
         </ion-card>
         <ion-card class="uno"(click)="cambiarEstadoS()" *ngIf="historialSolicitud !== true">
           <ion-icon name="list-outline"></ion-icon>

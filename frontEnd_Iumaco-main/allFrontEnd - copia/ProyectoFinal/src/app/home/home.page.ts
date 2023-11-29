@@ -57,7 +57,8 @@ export class HomePage implements OnInit {
           text: 'Aceptar',
           handler: () => { this.router.navigate(['/login']); }
         }
-      ]
+      ],
+      mode: 'ios'
     });
   
     await alert.present();
