@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 import axios  from 'axios'
 
@@ -15,6 +15,7 @@ export class LlamadoAtencionPage implements OnInit {
   constructor(private router: Router, 
     private http:HttpClient, 
     private alertController: AlertController, 
+    private loadingController: LoadingController,
     private route: ActivatedRoute)
   {
     this.obtenerFichasUnicas(); 
@@ -231,16 +232,28 @@ export class LlamadoAtencionPage implements OnInit {
   };
 
   /* Aca se prueba la funcionalidad del Envio del correo */
-  enviarCorreo() {
-    if (this.destinatario === ""){
-      this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
-    }else if( this.nota === ''){  
-      this.presentAlert("Campo vacío", "Por escriba un mensaje en el espacio de nota.");
-    }else{
-      this.enviarCoorreos();
-      this.insertListaLlamados();
+     async enviarCorreo() {
+    const loading = await this.loadingController.create({
+      message: 'Enviando correo...', // Puedes personalizar el mensaje de carga
+      spinner: 'bubbles', // Usa el spinner de estilo iOS
+    });
+  
+    try {
+      if (this.destinatario === "") {
+        this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
+      } else if (this.nota === '') {
+        this.presentAlert("Campo vacío", "Por favor escriba un mensaje en el espacio de nota.");
+      } else {
+        await loading.present(); // Muestra la pantalla de carga
+        this.enviarCoorreos();
+        this.insertListaLlamados();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      loading.dismiss(); // Oculta la pantalla de carga
     }
-  }
+  };
 
   fromData = {
     nota: '',
@@ -262,10 +275,10 @@ export class LlamadoAtencionPage implements OnInit {
 
         if(response.data === 1){
           this.presentAlert("Subida exitosa", " Correo enviado exitosamente");
-          
+          this.clear();
         }else{
           this.presentAlert("Subida fallida", "");
-          
+          this.clear();
         }
       })
       .catch((error) => {
@@ -298,4 +311,11 @@ export class LlamadoAtencionPage implements OnInit {
       )
     }
   };
+
+  clear(){
+    this.nota = '',
+    this.destinatario = '',
+    this.fichaSeleccionada = ''
+  };
+
 }

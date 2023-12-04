@@ -1,0 +1,140 @@
+//encabezado
+.pop{
+    --background: rgb(57, 169, 0);
+  }
+  h1{
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    margin-top: -400px;
+  }
+  h3{
+    margin-left: 20px;
+    font-size: 22px;
+    color:#FFFFFF
+  }
+  .logo{
+    height: 70px;
+    padding-left: 580px;
+  }
+  .logi{
+    text-align: center;
+  }
+  .botonsesion{
+    --color:#ffffff;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+  .perfil{
+    width: 50px;
+    height: 50px;
+  }
+  .icon5{
+    width: 20px;
+    height: 20px;
+  }
+  .botonsesion:hover{
+    --color: rgb(57, 169, 0);
+    background-color: white;
+    margin-right: 1px;
+  }
+  #header {
+    
+    text-align: center;
+    align-items: center;
+    button {
+        width: 150px; // Ajusta el tamaño del círculo según tus necesidades
+        height: 40px; // Ajusta el tamaño del círculo según tus necesidades
+        border-radius: 10px; // Esto hace que el botón tenga forma de círculo
+        color: white;
+        background-color: #39A900;
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 18px;
+    }
+    button:hover{
+       
+        background-color: transparent;
+        border: 2px solid  ;
+        font-weight: bold;
+    }
+  }
+  .header{
+    height: 150px;
+  }
+  .baner{
+    position: relative;
+    height: 65px;
+    width: 100%;
+  }
+  .logo{
+    height: 80px;
+    width: 100px;
+  
+  }
+  
+  .search{
+    padding-top: 20px;
+    width: 10px;
+  }
+  
+  .text{
+    padding-top: 20px;
+  }
+  .botones{
+    --background: black;
+    --border: 2px  #FF028B ;
+    width: 110px;
+    font-size: 12px;
+  }
+  
+  .botones:hover{
+    --background: transparent;
+    --border-color: #FF028B;
+    --border-style: solid;
+    --border-width: 2px;
+  
+  }
+  
+  .botoncarrito{
+    --background:#FF028B;
+    border: 2px  #FF028B ;
+    width: 110px;
+    height: 30px;
+  }
+  
+  .botoncarrito:hover{
+    --background: transparent;
+    --border-color: #FF028B;
+    --border-style: solid;
+    --border-width: 2px;
+  
+  }
+  
+  .fondo{
+    --background: #EFEFEF;
+  }
+  
+  ///////////////////////////////
+  
+    ion-card-title{
+      text-align: center;
+      font-size: 40px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+  
+    .check{
+      --text-align: center;
+    }
+    .terminos-uso{
+      text-align: center;
+      font-size: 20px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+  
+    .boton-registro{
+      height: 50px;
+      padding-bottom: 20px;
+    }
+  

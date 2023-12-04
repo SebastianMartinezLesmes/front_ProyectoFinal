@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'documentos-edit',
     loadChildren: () => import('./documentos-edit/documentos-edit.module').then( m => m.DocumentosEditPageModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({

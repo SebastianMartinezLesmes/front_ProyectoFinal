@@ -412,4 +412,5 @@ export class ListaCitadosPage implements OnInit {
     //otra acción
   };
   irDocumentos(){this.router.navigate(['/documentos', { data: this.perm }]);}
+  irPerfil(){ this.router.navigate(['perfil', { data: this.perm }]); }
 }
