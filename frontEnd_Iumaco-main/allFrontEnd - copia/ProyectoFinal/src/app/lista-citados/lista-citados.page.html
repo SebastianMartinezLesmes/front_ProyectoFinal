@@ -1,5 +1,5 @@
 <ion-header class="pop" [translucent]="false">
-  <ion-toolbar class="pop" >
+  <ion-toolbar>
     <ion-item id="header" class="pop">
       <ion-icon name="person-circle-outline" (click)="irPerfil()" class="perfil"></ion-icon>
       <h3> IUMACO </h3> 
@@ -9,7 +9,7 @@
       <div class="custom-button" slot="end">
         
         <button (click)="volver()" id="cerrarSesion" slot="start">
-          <ion-icon name="home-outline"class="icon5" ></ion-icon>  
+          <ion-icon name="home-outline"class="icon5"></ion-icon>  
           Home 
         </button>
     
@@ -181,8 +181,8 @@
                 </ion-item>
               </ion-card-content>
               <ion-item lines="none">
-                <button slot="start" (click)="confirmarCitacion(l)" class="bibo">aprobar</button>
-                <button slot="end" (click)="cancelarCitacion(l)" class="bibo">cancelar</button>
+                <button slot="start" (click)="confirmarCitacion(l)" class="bibo">Aprobar</button>
+                <button slot="end" (click)="cancelarCitacion(l)" class="bibo">Cancelar</button>
               </ion-item>
               <br><br>
             </ion-card>
@@ -234,7 +234,7 @@
       </ion-card>
     </div>
   </div>
-  <div *ngIf="cambioLista === true">
+  <div *ngIf="cambioLista === true" id="let">
     <ion-card class="uno" (click)="irDocumentos()" id="cerrarSesion">
       <ion-icon name="Document"></ion-icon>
       <h4>Citacones a Comite</h4>        

@@ -36,25 +36,20 @@ h5{
   }
 
 #header {
-    
-  
-    button {
-        width: 190px; // Ajusta el tamaño del círculo según tus necesidades
-        height: 40px; // Ajusta el tamaño del círculo según tus necesidades
-        border-radius: 10px; // Esto hace que el botón tenga forma de círculo
-        color: white;
-        background-color: #39A900;
-        margin-left: 20px;
-        margin-right: 20px;
-        font-size: 22px;
-    }
-    button:hover{
-       
-        background-color: transparent;
-        border: 1px solid white;
-        
-        
-    }
+  button {
+    width: 190px; // Ajusta el tamaño del círculo según tus necesidades
+    height: 40px; // Ajusta el tamaño del círculo según tus necesidades
+    border-radius: 10px; // Esto hace que el botón tenga forma de círculo
+    color: white;
+    background-color: #39A900;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 22px;
+  }
+  button:hover{
+    background-color: transparent;
+    border: 1px solid white;        
+  }
 }
 
 ion-card{

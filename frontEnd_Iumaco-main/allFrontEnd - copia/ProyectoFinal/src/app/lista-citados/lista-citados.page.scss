@@ -1,55 +1,56 @@
 //encabezado
 .pop{
-    --background: rgb(57, 169, 0);
-  }
-  h1{
-    text-align: center;
-    font-size: 30px;
-    position: absolute;
-    margin-top: -400px;
-  }
-  h3{
-    margin-left: 20px;
-    font-size: 22px;
-    color:#FFFFFF
-  }
-  .logo{
-    height: 70px;
-    padding-left: 580px;
-  }
-  .logi{
-    text-align: center;
-  }
+  --background: rgb(57, 169, 0);
+}
+h1{
+  text-align: center;
+  font-size: 30px;
+  position: absolute;
+  margin-top: -400px;
+}
+h3{
+  margin-left: 20px;
+  font-size: 22px;
+  color:#FFFFFF
+}
+.logo{
+  height: 70px;
+  padding-left: 580px;
+}
+.logi{
+  text-align: center;
+}
 
-  .perfil{
-    width: 50px;
-    height: 50px;
-  }
-  .icon5{
-    width: 30px;
-    height: 30px;
-  }
+.perfil{
+  width: 50px;
+  height: 50px;
+}
+.icon5{
+  width: 30px;
+  height: 30px;
+}
+.custom-button{
+  display: flex;
+  align-items: center;
+}
 
 #header {
-    
-    text-align: center;
-    align-items: center;
-    button {
-        width: 190px; // Ajusta el tamaño del círculo según tus necesidades
-        height: 40px; // Ajusta el tamaño del círculo según tus necesidades
-        border-radius: 10px; // Esto hace que el botón tenga forma de círculo
-        color: white;
-        background-color: #39A900;
-        margin-left: 20px;
-        margin-right: 20px;
-        font-size: 22px;
-    }
-    button:hover{
-       
-        background-color: transparent;
-        border: 1px solid white;
-        
-    }
+  text-align: center;
+  align-items: center;
+  button {
+    width: 190px; // Ajusta el tamaño del círculo según tus necesidades
+    height: 40px; // Ajusta el tamaño del círculo según tus necesidades
+    border-radius: 10px; // Esto hace que el botón tenga forma de círculo
+    color: white;
+    background-color: #39A900;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 22px;
+  }
+  button:hover{
+    background-color: transparent;
+    border: 1px solid white;
+  }
 }
 
 //cuerpo   Azul = rgb(130,222,240)     verde = #39A900
@@ -67,44 +68,45 @@ ion-content {
 }
 
 #titleX, ion-card-title, #linkCorreo {
-    text-align: center;
+  text-align: center;
 }
 #titleX{
-    h2{  text-align: center;
-        font-size: 30px;
-        margin-top: 50px;
-        border-bottom: 2px solid black;
-        display: inline-block; }
+  h2{  
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;
+    border-bottom: 2px solid black;
+    display: inline-block; 
+  }
 }
   
 #date{
-    margin-left: 40px;
-    margin-right: 40px;
-    ion-item{
-        ion-label{ margin-left: 20px; }
-        ion-select{ margin-right: 10px; }
-    }
+  margin-left: 40px;
+  margin-right: 40px;
+  ion-item{
+    ion-label{ margin-left: 20px; }
+    ion-select{ margin-right: 10px; }
+  }
 }
 
 #linkeding{
-    a{ color: #39A900;}
+  a{ color: #39A900;}
 }
 #cambiarFecha{ 
   width: 290px;
-    height: 60px;
-    border-radius: 10px; 
-    color: white;
-    background-color: #39A900;
-    font-size: 18px;
-    margin-left: 30px;
+  height: 60px;
+  border-radius: 10px; 
+  color: white;
+  background-color: #39A900;
+  font-size: 18px;
+  margin-left: 30px;
 }
 
 #historial{
   display: grid;
   overflow: auto;
   #historial2{
-    display: flex;
-    
+    display: flex;  
     ion-card{
       grid-template-columns: repeat(1, 1fr);
     }
@@ -145,26 +147,34 @@ ion-icon{
 }
 
 .placa{
-    margin: 10px;
-    border: 2px solid rgb(156, 121, 121);
-    border-radius: 10px;
+  margin: 10px;
+  border: 2px solid rgb(156, 121, 121);
+  border-radius: 10px;
 }
 .placo{
-    margin: 10px;
-    border: 2px solid rgb(156, 121, 121);
-    border-radius: 10px;
-    margin-left:42px;
-    margin-right: 42px  ;
+  margin: 10px;
+  border: 2px solid rgb(156, 121, 121);
+  border-radius: 10px;
+  margin-left:42px;
+  margin-right: 42px  ;
 }
 .bibo{
-    width: 290px;
-    height: 60px;
-    border-radius: 10px; 
-    color: white;
-    background-color: #39A900;
-    font-size: 18px;
-    margin-left: 30px;
+  width: 290px;
+  height: 60px;
+  border-radius: 10px; 
+  color: white;
+  background-color: #39A900;
+  font-size: 18px;
+  margin-left: 30px;
 }
 .center{
-    text-align: center;
+  text-align: center;
+}
+
+#let{
+  display: flex;
+  ion-card{
+    margin-left: 300px;
+    margin-bottom: 20px;
+  }
 }
