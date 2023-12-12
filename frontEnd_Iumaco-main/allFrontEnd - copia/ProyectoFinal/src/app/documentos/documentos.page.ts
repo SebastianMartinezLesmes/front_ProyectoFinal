@@ -122,4 +122,6 @@ export class DocumentosPage implements OnInit {
       }
     )
   };
+  irPerfil(){this.router.navigate(['/perfil', { data: this.perm }]);}
+  CitarComite() {this.router.navigate(['/lista-citados', {data: this.idCoordinador}]);}
 }

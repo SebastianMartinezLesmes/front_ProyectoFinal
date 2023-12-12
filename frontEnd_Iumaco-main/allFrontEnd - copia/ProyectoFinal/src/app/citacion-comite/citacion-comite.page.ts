@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import axios  from 'axios'
 
@@ -16,8 +16,7 @@ export class CitacionComitePage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private http:HttpClient, 
-    private alertController: AlertController,
-    private loadingController: LoadingController)
+    private alertController: AlertController)
     { 
     this.idInstructor = this.route.snapshot.paramMap.get('data');
     this.obtenerFichasUnicas(); 
@@ -178,33 +177,22 @@ export class CitacionComitePage implements OnInit {
   };
 
   /* Aca se prueba la funcionalidad del formulario*/
-  async enviarCorreo() {
-    const loading = await this.loadingController.create({
-      message: 'Enviando correo...', // Puedes personalizar el mensaje de carga
-      spinner: 'bubbles', // Usa el spinner de estilo iOS
-    });
-  
-    try {
-      if (this.destinatario === "") {
-        this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
-      } else if (this.fromData.linkEvidencias.trim() === '') {
+  enviarCorreo(){
+    if (this.destinatario === "") {
+      this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
+    } else {
+      if (this.fromData.linkEvidencias.trim() === '') {
         this.presentAlert("Requerimiento", "Para esta accion es requerido un link donde se encuentré la evidencia.");
       } else {
-        await loading.present(); // Muestra la pantalla de carga
         this.getfromData(); //aca se resive el valor del instructor
         this.insertListaPeticiones(); //aca se guardan los datos, si los campos son completados
         this.presentAlert("Mensaje enviado", "La informacion se ha guardado y el mensaje se ha enviado con éxito, recibirá una respuesta de la coordinación por correo electrónico una vez que se tome una decisión");
-        this.limpiarCampos(); 
+        this.limpiarCampos();
       }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      loading.dismiss(); // Oculta la pantalla de carga
     }
-  };
+  };  
 
   insertListaPeticiones(){
-    this.getfromData();
     console.log(this.fromData)
     axios.post("http://localhost/iumaco_db/insertlistapeticiones.php", this.fromData).then((response) =>{ console.log(response);})
     .catch((error) =>{console.log(error)});
@@ -220,7 +208,6 @@ export class CitacionComitePage implements OnInit {
   limpiarCampos(){
     this.fichaSeleccionada = '';
     this.destinatario = '';
-    this.nota = '';
     this.fromData.nota = '';
     this.fromData.linkEvidencias = '';
     console.log("campos limpiados correctamente");

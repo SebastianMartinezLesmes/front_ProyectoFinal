@@ -124,6 +124,7 @@ export class ListaCitadosPage implements OnInit {
   Coordinación Académica`};
 
   cambioListas(){
+   
     if(this.cambioLista === false){ 
       this.cambioLista = true;
       this.men = ' Mostrar Peticiones ';

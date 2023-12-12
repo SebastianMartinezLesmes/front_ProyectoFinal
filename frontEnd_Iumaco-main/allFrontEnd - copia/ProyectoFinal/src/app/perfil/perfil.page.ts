@@ -43,6 +43,7 @@ export class PerfilPage implements OnInit {
     if(this.cargo === 'instructor'){ this.router.navigate(['/home', { data: this.id }]); }
     else if(this.cargo === 'coordinador'){ this.router.navigate(['/home-coordinador', { data: this.id }]); }
   }
+  
   async confirmarSalida() {
     const alert = await this.alertController.create({
       header: 'Confirmar salida',

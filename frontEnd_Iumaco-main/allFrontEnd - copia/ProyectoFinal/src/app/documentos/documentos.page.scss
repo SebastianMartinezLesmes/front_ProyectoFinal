@@ -1,39 +1,60 @@
+//encabezado
 .pop{
     --background: rgb(57, 169, 0);
-}
-
-h1{
+  }
+  h1{
     text-align: center;
     font-size: 30px;
     position: absolute;
     margin-top: -400px;
-}
-
-h3{
-    
+  }
+  h3{
     margin-left: 20px;
     font-size: 22px;
     color:#FFFFFF
-}
-
-.logo{
+  }
+  .logo{
     height: 70px;
-    padding-left: 690px;
-}
+    padding-left: 580px;
+  }
+  .logi{
+    text-align: center;
+  }
+
+  .perfil{
+    width: 50px;
+    height: 50px;
+  }
+  .icon5{
+    width: 30px;
+    height: 30px;
+    
+  }
+h5{
+    text-align: center;
+    font-size: 90px;
+  }
+
+#header {
+    
   
-.botonsesion{
-    --color:#ffffff;
-    width: 130px;
-    height: 60px;
-    border-radius: 10px;
-    background: #39A900;
-    margin: 15px;
-    font-size: 20px;
-}
-.botonsesion:hover{
-    --color: white;
-    background-color: rgb(57, 169, 0);
-    border: 3px solid  white;
+    button {
+        width: 190px; // Ajusta el tamaño del círculo según tus necesidades
+        height: 40px; // Ajusta el tamaño del círculo según tus necesidades
+        border-radius: 10px; // Esto hace que el botón tenga forma de círculo
+        color: white;
+        background-color: #39A900;
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 22px;
+    }
+    button:hover{
+       
+        background-color: transparent;
+        border: 1px solid white;
+        
+        
+    }
 }
 
 ion-card{
@@ -70,6 +91,29 @@ content{
 .centered-text {
     text-align: center;
 }
+.center{
+  text-align: center;
+  font-size: 25px;
+}
+.fechas{
+  border: 3px solid rgb(156, 121, 121);
+  border-radius: 15px;
+}
+ion-card-content{
+  
+  font-size: 20px;
+}
+ion-card-subtitle{
+  text-align: center;
+  font-size: 20px;
+}
+ion-card{
+  margin: 100px;
+  border: 2px solid rgb(156, 121, 121);
+  border-radius: 15px;
+}
+
+
 
 @media screen and (max-width: 414px){
 
@@ -87,3 +131,31 @@ content{
     }
 
 }
+h4{
+    font-size: 20px;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: 60px;
+  }
+  .uno{
+    border: 3px solid  rgb(57, 169, 0);
+    margin-top: 60px;
+    margin-left: 100px;
+    border-radius: 20px;
+    width: 320px;
+    height: 80px;
+    justify-content: center;
+  }
+  .uno:hover{
+      background-color:#39A900;
+      border: 3px solid white;
+      --color: white;
+    }
+    
+  ion-icon{
+   
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-top: 18px;
+  }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import axios  from 'axios'
 
@@ -15,8 +15,7 @@ export class FelicitarAprendizPage implements OnInit {
   constructor(private router: Router, 
     private route: ActivatedRoute,
     private http:HttpClient, 
-    private alertController: AlertController,
-    private loadingController: LoadingController)
+    private alertController: AlertController)
     { this.idInstructor = this.route.snapshot.paramMap.get('data');
       this.obtenerFichasUnicas(); 
       this.getHistorialF();
@@ -202,26 +201,14 @@ export class FelicitarAprendizPage implements OnInit {
   };
 
    /* Aca se prueba la funcionalidad del formulario*/
-   async enviarCorreo() {
-    const loading = await this.loadingController.create({
-      message: 'Enviando correo...', // Puedes personalizar el mensaje de carga
-      spinner: 'bubbles', // Usa el spinner de estilo iOS
-    });
-  
-    try {
-      if (this.destinatario === "") {
-        this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
-      } else if (this.nota === '') {
-        this.presentAlert("Campo vacío", "Por favor escriba un mensaje en el espacio de nota.");
-      } else {
-        await loading.present(); // Muestra la pantalla de carga
-        this.enviarCoorreos();
-        this.insertListaFelicitaciones();
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      loading.dismiss(); // Oculta la pantalla de carga
+  enviarCorreo() {
+    if (this.destinatario === ""){
+      this.presentAlert("Campo vacío", "Por favor escoga un aprendiz.");
+    }else if( this.nota === ''){  
+      this.presentAlert("Campo vacío", "Por escriba un mensaje en el espacio de nota.");
+    }else{
+      this.enviarCoorreos();
+      this.insertListaFelicitaciones();
     }
   };
 
@@ -243,7 +230,7 @@ export class FelicitarAprendizPage implements OnInit {
       .then((response) => {
         console.log(response.data);
 
-        if(response.data === 1){ this.presentAlert("Subida exitosa", ""); this.clear()}
+        if(response.data === 1){ this.presentAlert("Subida exitosa", ""); }
         else{ this.presentAlert("Subida fallida", ""); }
         // Maneja la respuesta del servidor aquí
       })
@@ -271,20 +258,13 @@ export class FelicitarAprendizPage implements OnInit {
     }else{
       this.http.post(url, body).subscribe(
         (response) => {
-          console.log('Correo enviado y guardado exitosamente', response);
-          this.clear();
+          console.log('Correo enviado exitosamente', response);
         },
         (error) => {
           console.error('Error al enviar el correo', error);
         }
       )
     }
-  };
-
-  clear(){
-    this.nota = '',
-    this.destinatario = '',
-    this.fichaSeleccionada = ''
   };
 
 }

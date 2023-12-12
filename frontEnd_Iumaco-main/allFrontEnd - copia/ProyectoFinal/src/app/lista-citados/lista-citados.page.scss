@@ -1,123 +1,80 @@
-// header
+//encabezado
+.pop{
+    --background: rgb(57, 169, 0);
+  }
+  h1{
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    margin-top: -400px;
+  }
+  h3{
+    margin-left: 20px;
+    font-size: 22px;
+    color:#FFFFFF
+  }
+  .logo{
+    height: 70px;
+    padding-left: 580px;
+  }
+  .logi{
+    text-align: center;
+  }
+
+  .perfil{
+    width: 50px;
+    height: 50px;
+  }
+  .icon5{
+    width: 30px;
+    height: 30px;
+  }
+
 #header {
-    font-family: 'Times New Roman', Times, serif;
+    
     text-align: center;
     align-items: center;
     button {
-        width: 150px; // Ajusta el tamaño del círculo según tus necesidades
+        width: 190px; // Ajusta el tamaño del círculo según tus necesidades
         height: 40px; // Ajusta el tamaño del círculo según tus necesidades
         border-radius: 10px; // Esto hace que el botón tenga forma de círculo
         color: white;
         background-color: #39A900;
         margin-left: 20px;
         margin-right: 20px;
-        font-size: 18px;
+        font-size: 22px;
     }
     button:hover{
-        color: rgb(57, 169, 0);
+       
         background-color: transparent;
-        border: 3px solid  rgb(57, 169, 0);
-        font-weight: bold;
+        border: 1px solid white;
+        
     }
 }
 
 //cuerpo   Azul = rgb(130,222,240)     verde = #39A900
 ion-content {
-    
-    --background:  #39A900; 
-
-    #otraFeha{
-
-        align-items: center;
-        margin-left: 10px;
-        margin-right: 10px;
-        background-color: white;
-        border-radius: 5px; 
-
-        button{
-            margin: 10px;
-            width: 140px;
-            height: 40px;
-            font-size: 20px;
-            border-radius: 10px; 
-            color: white;
-            background-color: rgb(57, 169, 0);
-        }
-        button:hover{
-            color: rgb(57, 169, 0);
-            background-color: transparent;
-            border: 3px solid  rgb(57, 169, 0);
-        }
-
-        h4{
-            color: black;
-        }
+  #otraFeha{
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 5px; 
+    h4{
+      color: black;
     }
-
-    ion-card{
-        ion-item{
-            button{
-                margin: 10px;
-                width: 100px;
-                height: 40px;
-                font-size: 15px;
-                border-radius: 10px; 
-                color: white;
-                background-color: #39A900;
-            }
-            button:hover{
-                color: rgb(57, 169, 0);
-                background-color: transparent;
-                border: 3px solid  rgb(57, 169, 0);
-            }
-        }
-    }
-    div{
-        ion-card{
-            ion-item{
-
-                button{
-                    margin: 10px;
-                    width: 100px;
-                    height: 40px;
-                    font-size: 15px;
-                    border-radius: 10px; 
-                    color: white;
-                    background-color: #39A900;
-                }
-                button:hover{
-                    color: rgb(57, 169, 0);
-                    background-color: transparent;
-                    border: 3px solid  rgb(57, 169, 0);
-                }
-            }
-        }
-    }
-
-    ion-item{
-
-        button{
-            margin: 10px;
-            width: 180px;
-            height: 45px;
-            font-size: 18px;
-            border-radius: 10px; 
-            color: white;
-            background-color: #39A900;
-        }
-        button:hover{
-            color: rgb(57, 169, 0);
-            background-color: transparent;
-            border: 3px solid  rgb(57, 169, 0);
-        }
-    }
+  }
 }
 
 #titleX, ion-card-title, #linkCorreo {
     text-align: center;
 }
 #titleX{
-    h2{ color: white; }
+    h2{  text-align: center;
+        font-size: 30px;
+        margin-top: 50px;
+        border-bottom: 2px solid black;
+        display: inline-block; }
 }
   
 #date{
@@ -132,15 +89,82 @@ ion-content {
 #linkeding{
     a{ color: #39A900;}
 }
-#cambiarFecha{ margin-left: 30px;}
+#cambiarFecha{ 
+  width: 290px;
+    height: 60px;
+    border-radius: 10px; 
+    color: white;
+    background-color: #39A900;
+    font-size: 18px;
+    margin-left: 30px;
+}
 
 #historial{
-    #historial2{
-        display: flex;
-        ion-card{
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-        }
-    }
+  display: grid;
+  overflow: auto;
+  #historial2{
+    display: flex;
     
+    ion-card{
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+.fechas{
+  border: 3px solid rgb(156, 121, 121);
+  border-radius: 15px;
+}
+
+h4{
+  font-size: 20px;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 60px;
+}
+.uno{
+  border: 3px solid  rgb(57, 169, 0);
+  margin-top: 60px;
+  margin-left: 100px;
+  border-radius: 20px;
+  width: 320px;
+  height: 80px;
+  justify-content: center;
+}
+.uno:hover{
+  background-color:#39A900;
+  border: 3px solid white;
+  --color: white;
+}
+  
+ion-icon{
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  margin-top: 18px;
+}
+
+.placa{
+    margin: 10px;
+    border: 2px solid rgb(156, 121, 121);
+    border-radius: 10px;
+}
+.placo{
+    margin: 10px;
+    border: 2px solid rgb(156, 121, 121);
+    border-radius: 10px;
+    margin-left:42px;
+    margin-right: 42px  ;
+}
+.bibo{
+    width: 290px;
+    height: 60px;
+    border-radius: 10px; 
+    color: white;
+    background-color: #39A900;
+    font-size: 18px;
+    margin-left: 30px;
+}
+.center{
+    text-align: center;
 }

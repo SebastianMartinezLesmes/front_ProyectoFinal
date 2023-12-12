@@ -49,15 +49,11 @@
             
             <ion-card  *ngFor="let F of gHistorialSolicitud" >
               <ion-item>
-                <P slot="start">Aprendiz: {{F.aprendizFK}}</P>
-                <p slot="end">Fecha creacion de la solicitud: {{F.fechaPeticionInstructor}}</p>
+                <P slot="start">Id del aprendiz:{{F.aprendizFK}}</P>
+                <P slot="end">Fecha: {{F.fecha}}</P>
               </ion-item>
               <ion-item>
-                <p slot="start">Nota: {{F.nota}}</p>
-              </ion-item>
-              <ion-item>
-                <P slot="end">Fecha desición coordinador: {{F.fecha}}</P>
-                <p slot="start">Desición del coordinador: {{F.accion}}</p>
+                Nota: {{F.nota}}
               </ion-item>
             </ion-card>
           </div>
@@ -80,7 +76,7 @@
     
             <ion-item class="cuadro">
               <ion-label position="floating">Nota:</ion-label>
-              <ion-textarea [(ngModel)]="fromData.nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
+              <ion-textarea [(ngModel)]="nota" id="nota" name="nota" rows="4" cols="30"></ion-textarea>
             </ion-item><br>
 
             <ion-item class="cuadro">

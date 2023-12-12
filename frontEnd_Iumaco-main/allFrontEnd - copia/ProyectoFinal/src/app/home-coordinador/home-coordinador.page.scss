@@ -32,12 +32,8 @@ h3{
 }
 
 //cuerpo
-.centered-containers {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding-left: 10px;
-}
+
+
 #cerrarSesion {
   text-align: right;
   padding: 10px;
@@ -52,27 +48,26 @@ ion-title{
     display: inline-block;
   }
   .uno{
-    position: absolute;
     border: 3px solid  rgb(57, 169, 0);
-    margin-top: 100px;
-    margin-left: 500px;
     text-align: center;
     font-size: 20px;
     border-radius: 30px;
     width: 240px;
     height: 280px;
+    margin-left: 100px;
+    
+    
   }
-  .tre{
-    position: absolute;
+  .dos{
     border: 3px solid  rgb(57, 169, 0);
-    margin-top: 100px;
-    margin-left: 40px;
     text-align: center;
     font-size: 20px;
     border-radius: 30px;
     width: 240px;
-    height: 280px;
+    height: 280px;  
+    margin-left: 50px;
   }
+
   .este{
     position: absolute;
     bottom: 0;
@@ -86,7 +81,7 @@ ion-title{
     height: 160px;
     size:6;
   }
-  .uno:hover, .tre:hover{
+  .uno:hover, .dos:hover{
     background-color: rgb(57, 169, 0);
     color:#FFFFFF;
     cursor: pointer;
@@ -107,27 +102,12 @@ ion-title{
   }
   .uno{
     border: 2px solid  rgb(57, 169, 0);
-    position: absolute; 
-     margin-top: 100px;
-     margin-left: 85px;
+  
      text-align: center;
      font-size: 20px;
      border-radius: 30px;
      width: 240px;
      height: 280px;
-     justify-content: center;
-  }
-  .tre{
-    border: 2px solid  rgb(57, 169, 0);
-    position: absolute;
-     margin-top: 400px;
-     margin-left: -120px;
-     text-align: center;
-     font-size: 20px;
-     border-radius: 30px;
-     width: 240px;
-     height: 280px;
-     justify-content: center;
   }
   .este{
     display: none;

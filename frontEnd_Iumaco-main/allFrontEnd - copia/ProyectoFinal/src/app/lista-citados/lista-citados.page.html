@@ -1,150 +1,195 @@
-<ion-header [translucent]="true" id="header">
-  <ion-toolbar>
-    <ion-item lines="none">
-      <button (click)="volver()" id="cerrarSesion" slot="start"> Volver </button>
+<ion-header class="pop" [translucent]="false">
+  <ion-toolbar class="pop" >
+    <ion-item id="header" class="pop">
+      <ion-icon name="person-circle-outline" (click)="irPerfil()" class="perfil"></ion-icon>
+      <h3> IUMACO </h3> 
+      <div id="logi">
+        <img src="../../assets/sena.png" class="logo">
+      </div>
+      <div class="custom-button" slot="end">
+        
+        <button (click)="volver()" id="cerrarSesion" slot="start">
+          <ion-icon name="home-outline"class="icon5" ></ion-icon>  
+          Home 
+        </button>
     
-      <button (click)="salirPagina()" id="cerrarSesion" slot="end"> Cerrar sesión </button>
+        <button (click)="salirPagina()" id="cerrarSesion" slot="end"> 
+          <ion-icon name="exit-outline" class="icon5"></ion-icon>
+          Cerrar sesión 
+        </button>
+      </div>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
+<br>
+<br>
 <ion-content [fullscreen]="true">
 
-  <ion-item>
-    <button (click)="cambioListas()" id="cerrarSesion">{{men}}</button>
-  </ion-item><br>
-  
   <div *ngIf="cambioLista === false">
-    <div id="titleX">
-      <h2><u> lista de peticiones para citar aprendices </u></h2>
-    </div><br>
 
-    <ion-card *ngIf="selectedDateTime == ''" id="date">
-
-      <ion-item>
-        <ion-label>Año:</ion-label>
-        <ion-select [(ngModel)]="sAno">
-          <ion-select-option value="{{anio}}">año actual</ion-select-option>
-          <ion-select-option value="{{anioSigiente}}">año siguiente</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Mes:</ion-label>
-        <ion-select [(ngModel)]="sMes" (ionChange)="actualizarDias(sMes)">
-          <ion-select-option value="01">Enero</ion-select-option>
-          <ion-select-option value="02">Febrero</ion-select-option>
-          <ion-select-option value="03">Marzo</ion-select-option>
-          <ion-select-option value="04">Abril</ion-select-option>
-          <ion-select-option value="05">Mayo</ion-select-option>
-          <ion-select-option value="06">Junio</ion-select-option>
-          <ion-select-option value="07">Julio</ion-select-option>
-          <ion-select-option value="08">Agosto</ion-select-option>
-          <ion-select-option value="09">Septiembre</ion-select-option>
-          <ion-select-option value="10">Octubre</ion-select-option>
-          <ion-select-option value="11">Noviembre</ion-select-option>
-          <ion-select-option value="12">Diciembre</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>  
-        <ion-label>Día:</ion-label>
-        <ion-select [(ngModel)]="sDia">
-          <ion-select-option *ngFor="let dia of dias" [value]="dia">{{ dia }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Hora:</ion-label>
-        <ion-select [(ngModel)]="sHora">
-          <ion-select-option value="01">1 am</ion-select-option>
-          <ion-select-option value="02">2 am</ion-select-option>
-          <ion-select-option value="03">3 am</ion-select-option>
-          <ion-select-option value="04">4 am</ion-select-option>
-          <ion-select-option value="05">5 am</ion-select-option>
-          <ion-select-option value="06">6 am</ion-select-option>
-          <ion-select-option value="07">7 am</ion-select-option>
-          <ion-select-option value="08">8 am</ion-select-option>
-          <ion-select-option value="09">9 am</ion-select-option>
-          <ion-select-option value="10">10 am</ion-select-option>
-          <ion-select-option value="11">11 am</ion-select-option>
-          <ion-select-option value="12">12 am</ion-select-option>
-          
-          <ion-select-option value="13">1 pm</ion-select-option>
-          <ion-select-option value="14">2 pm</ion-select-option>
-          <ion-select-option value="15">3 pm</ion-select-option>
-          <ion-select-option value="16">4 pm</ion-select-option>
-          <ion-select-option value="17">5 pm</ion-select-option>
-          <ion-select-option value="18">6 pm</ion-select-option>
-          <ion-select-option value="19">7 pm</ion-select-option>
-          <ion-select-option value="20">8 pm</ion-select-option>
-          <ion-select-option value="21">9 pm</ion-select-option>
-          <ion-select-option value="22">10 pm</ion-select-option>
-          <ion-select-option value="23">11 pm</ion-select-option>
-          <ion-select-option value="24">12 pm</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Minutos:</ion-label>
-        <ion-select [(ngModel)]="sMinutos">
-          <ion-select-option *ngFor="let min of minutos" [value]="min">{{ min }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <ion-item>
-        <button slot="start" (click)="omitir()">Omitir</button>
-        <button slot="end" (click)="ponerFecha()">Poner Fecha </button>
-      </ion-item>
-    </ion-card>
-    
-    <ion-item id="otraFeha" *ngIf="selectedDateTime ! '' ">
-      <button slot="end" (click)="LimpiarFecha()" id="cambiarFecha"> Cambiar fecha </button>
-  
-      <h4 slot="start">
-        Dia de la cita: {{selectedDateTime}}
-      </h4>
-    </ion-item>
-  
-    <div *ngIf="selectedDateTime ! '' ">
-      <ion-card *ngFor="let l of listaDBactivo">
-        <ion-card-header>
-  
-          <ion-grid>
-            <ion-row>
-              <ion-col></ion-col>
-              <ion-col size="8"><ion-card-title>Numero de la petición: {{l.id}}</ion-card-title></ion-col>
-              <ion-col></ion-col>
-            </ion-row>
-          </ion-grid>
-          
-          
-          <ion-item lines="none">
-            <ion-card-subtitle slot="start">Instructor: {{l.instructor}}</ion-card-subtitle>
-            <ion-card-subtitle slot="end">Correo: {{l.correoInstructor}}</ion-card-subtitle>
-          </ion-item>
-    
-          <ion-item lines="none">
-            <ion-card-subtitle slot="start">Aprendiz:{{l.aprendiz}}</ion-card-subtitle>
-            <ion-card-subtitle slot="end">Correo:{{l.correoAprendiz}}</ion-card-subtitle>
-    
-          </ion-item>
-        </ion-card-header>
+    <ion-row>
+      <ion-col>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <ion-card class="uno" (click)="irDocumentos()" id="cerrarSesion">
+          <ion-icon name="Document"></ion-icon>
+          <h4>Citacones a Comite</h4>        
+        </ion-card>
+        <ion-card class="uno" (click)="cambioListas()" id="cerrarSesion">
+          <ion-icon name="list-outline"></ion-icon>
+          <h4>Historial</h4>        
+        </ion-card>
       
-        <ion-card-content>
-          <ion-item lines="none">
-            <ion-card-subtitle id="linkeding"><a href="{{l.linkEvidencias}}">Link de evidencias</a></ion-card-subtitle>
+      </ion-col>
+      <ion-col size="8" class="fechas">
+        <div id="titleX">
+          <h2 *ngIf="selectedDateTime == ''">Lista de peticiones para citar aprendices </h2>
+        </div>
+        <br><br><br><br><br><br>
+      
+          <ion-row *ngIf="selectedDateTime == ''" id="date">
+            <ion-col>
+              <ion-item class="placa">
+                <ion-label>Año:</ion-label>
+                <ion-select [(ngModel)]="sAno">
+                  <ion-select-option value="{{anio}}">año actual</ion-select-option>
+                  <ion-select-option value="{{anioSigiente}}">año siguiente</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item class="placa">
+                <ion-label>Mes:</ion-label>
+                <ion-select [(ngModel)]="sMes" (ionChange)="actualizarDias(sMes)">
+                  <ion-select-option value="01">Enero</ion-select-option>
+                  <ion-select-option value="02">Febrero</ion-select-option>
+                  <ion-select-option value="03">Marzo</ion-select-option>
+                  <ion-select-option value="04">Abril</ion-select-option>
+                  <ion-select-option value="05">Mayo</ion-select-option>
+                  <ion-select-option value="06">Junio</ion-select-option>
+                  <ion-select-option value="07">Julio</ion-select-option>
+                  <ion-select-option value="08">Agosto</ion-select-option>
+                  <ion-select-option value="09">Septiembre</ion-select-option>
+                  <ion-select-option value="10">Octubre</ion-select-option>
+                  <ion-select-option value="11">Noviembre</ion-select-option>
+                  <ion-select-option value="12">Diciembre</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item class="placa">  
+                <ion-label>Día:</ion-label>
+                <ion-select [(ngModel)]="sDia">
+                  <ion-select-option *ngFor="let dia of dias" [value]="dia">{{ dia }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="selectedDateTime == ''">
+            <ion-col>
+              <ion-item class="placo">
+                <ion-label>Hora:</ion-label>
+                <ion-select [(ngModel)]="sHora">
+                  <ion-select-option value="01">1 am</ion-select-option>
+                  <ion-select-option value="02">2 am</ion-select-option>
+                  <ion-select-option value="03">3 am</ion-select-option>
+                  <ion-select-option value="04">4 am</ion-select-option>
+                  <ion-select-option value="05">5 am</ion-select-option>
+                  <ion-select-option value="06">6 am</ion-select-option>
+                  <ion-select-option value="07">7 am</ion-select-option>
+                  <ion-select-option value="08">8 am</ion-select-option>
+                  <ion-select-option value="09">9 am</ion-select-option>
+                  <ion-select-option value="10">10 am</ion-select-option>
+                  <ion-select-option value="11">11 am</ion-select-option>
+                  <ion-select-option value="12">12 am</ion-select-option>
+                  
+                  <ion-select-option value="13">1 pm</ion-select-option>
+                  <ion-select-option value="14">2 pm</ion-select-option>
+                  <ion-select-option value="15">3 pm</ion-select-option>
+                  <ion-select-option value="16">4 pm</ion-select-option>
+                  <ion-select-option value="17">5 pm</ion-select-option>
+                  <ion-select-option value="18">6 pm</ion-select-option>
+                  <ion-select-option value="19">7 pm</ion-select-option>
+                  <ion-select-option value="20">8 pm</ion-select-option>
+                  <ion-select-option value="21">9 pm</ion-select-option>
+                  <ion-select-option value="22">10 pm</ion-select-option>
+                  <ion-select-option value="23">11 pm</ion-select-option>
+                  <ion-select-option value="24">12 pm</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item class="placo">
+                <ion-label>Minutos:</ion-label>
+                <ion-select [(ngModel)]="sMinutos">
+                  <ion-select-option *ngFor="let min of minutos" [value]="min">{{ min }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>  
+          </ion-row>
+
+          <br><br><br>
+          <div class="center" *ngIf="selectedDateTime == ''">
+            <button  (click)="omitir()" class="bibo">Omitir</button>
+            <button  (click)="ponerFecha()" class="bibo">Poner Fecha </button>
+          </div>
+          <br><br><br>
+
+          <ion-item id="otraFeha" *ngIf="selectedDateTime ! '' ">
+            <br><br><br>
+            <button slot="end" (click)="LimpiarFecha()" id="cambiarFecha"> Cambiar fecha </button>
+        
+            <h4 slot="start">Dia de la cita: {{selectedDateTime}}</h4><br><br>
           </ion-item>
-          <ion-item lines="none">
-            <h3>Nota: {{l.nota}}</h3>
-          </ion-item>
-        </ion-card-content>
-        <ion-item >
-          <button slot="start" (click)="confirmarCitacion(l)">aprobar</button>
-          <button slot="end" (click)="cancelarCitacion(l)">cancelar</button>
-        </ion-item>
-      </ion-card>
-    </div>
+        
+          <div *ngIf="selectedDateTime ! '' ">
+            <ion-card *ngFor="let l of listaDBactivo">
+              <ion-card-header>
+        
+                <ion-grid>
+                  <ion-row>
+                    <ion-col></ion-col>
+                    <ion-col size="8"><ion-card-title>Numero de la petición: {{l.id}}</ion-card-title></ion-col>
+                    <ion-col></ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+                
+                <ion-item lines="none">
+                  <ion-card-subtitle slot="start">Instructor: {{l.instructor}}</ion-card-subtitle>
+                  <ion-card-subtitle slot="end">Correo: {{l.correoInstructor}}</ion-card-subtitle>
+                </ion-item>
+          
+                <ion-item lines="none">
+                  <ion-card-subtitle slot="start">Aprendiz:{{l.aprendiz}}</ion-card-subtitle>
+                  <ion-card-subtitle slot="end">Correo:{{l.correoAprendiz}}</ion-card-subtitle>
+          
+                </ion-item>
+              </ion-card-header>
+            
+              <ion-card-content>
+                <ion-item lines="none">
+                  <ion-card-subtitle id="linkeding"><a href="{{l.linkEvidencias}}">Link de evidencias</a></ion-card-subtitle>
+                </ion-item>
+                <ion-item lines="none">
+                  <h3>Nota: {{l.nota}}</h3>
+                </ion-item>
+              </ion-card-content>
+              <ion-item lines="none">
+                <button slot="start" (click)="confirmarCitacion(l)" class="bibo">aprobar</button>
+                <button slot="end" (click)="cancelarCitacion(l)" class="bibo">cancelar</button>
+              </ion-item>
+              <br><br>
+            </ion-card>
+          </div>
+      </ion-col>
+    </ion-row>
+    
   </div>
 
   <div *ngIf="cambioLista === true" id="historial">
@@ -186,11 +231,18 @@
           
         </ion-item>
         
-    </ion-card>
+      </ion-card>
     </div>
   </div>
-
-  <ion-button (click)="irDocumentos()">ir documentos</ion-button><br>
-  <ion-button (click)="irPerfil()">ir perfil</ion-button>
+  <div *ngIf="cambioLista === true">
+    <ion-card class="uno" (click)="irDocumentos()" id="cerrarSesion">
+      <ion-icon name="Document"></ion-icon>
+      <h4>Citacones a Comite</h4>        
+    </ion-card>
+    <ion-card class="uno" (click)="cambioListas()" id="cerrarSesion">
+      <ion-icon name="list-outline"></ion-icon>
+      <h4>Formulario</h4>        
+    </ion-card>
+  </div>
 
 </ion-content>

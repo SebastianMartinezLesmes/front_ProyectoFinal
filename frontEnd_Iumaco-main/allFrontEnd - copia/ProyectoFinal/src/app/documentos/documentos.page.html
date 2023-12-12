@@ -1,137 +1,224 @@
 <ion-header class="pop" [translucent]="false">
   <ion-toolbar class="pop" >
     <ion-item id="header" class="pop">
+      <ion-icon name="person-circle-outline" (click)="irPerfil()" class="perfil"></ion-icon>
       <h3> IUMACO </h3> 
-      <div id="logo"><img src="../../assets/sena.png" class="logo"></div>
+      <div id="logi">
+        <img src="../../assets/sena.png" class="logo">
+      </div>
       <div class="custom-button" slot="end">
-        <button fill="clear" (click)="volver()"   class="botonsesion" slot="start"> Volver </button>
-        <button fill="clear" (click)="salirPagina()" class="botonsesion" slot="end"> Cerrar sesión </button>
+        
+        <button fill="clear" (click)="volver()"   class="botonsesion" slot="start"> 
+          <ion-icon name="home-outline"class="icon5" ></ion-icon>  
+          Home 
+        </button>
+    
+        <button fill="clear" (click)="salirPagina()" class="botonsesion" slot="end">
+          <ion-icon name="exit-outline" class="icon5"></ion-icon>
+          Cerrar sesión 
+        </button>
       </div>
     </ion-item>
   </ion-toolbar>
 </ion-header>
+        
+        <br>
+        
+
 
 <ion-content [fullscreen]="true">
-
-  <ion-item>
-    <ion-button (click)="cambiarEditableT()" *ngIf="editable !== 'todos'">Todos</ion-button>
-    <ion-button (click)="cambiarEditableN()" *ngIf="editable !== 'nada'">Sin proceso</ion-button>
-    <ion-button (click)="cambiarEditableA()" *ngIf="editable !== 'acta'">Mostrar Acta de condicionamiento</ion-button>
-    <ion-button (click)="cambiarEditableC()" *ngIf="editable !== 'cancelar'">Mostrar Cancelar Matricula </ion-button>
-  </ion-item>
-
-  <div *ngIf="editable === 'nada'" id="con">
-
-    <ion-item> Sin proceso evaluativo </ion-item>
-
-    <ion-card *ngFor="let dat of listaDBnada">
-      <ion-card-header>
-        <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
-  
-        Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
-        numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
+  <ion-row>
+    <ion-col>
       
-        Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
-        Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+        <ion-card class="uno"(click)="cambiarEditableT()" *ngIf="editable !== 'todos'" >
+          <ion-icon name="list-outline"></ion-icon>
+          <h4>Todos</h4>        
+        </ion-card>
+        <ion-card class="uno"(click)="cambiarEditableN()" *ngIf="editable !== 'nada'">
+          <ion-icon name="list-outline"></ion-icon>
+          <h4>Sin proceso</h4>        
+        </ion-card>
+        <ion-card class="uno"(click)="cambiarEditableA()" *ngIf="editable !== 'acta'">
+          <ion-icon name="file-tray-full-outline"></ion-icon>
+          <h4>Acta de condicionamiento</h4>        
+        </ion-card>
+        <ion-card class="uno"(click)="cambiarEditableC()" *ngIf="editable !== 'cancelar'">
+          <ion-icon name="person-remove-outline"></ion-icon>
+          <h4>Cancelar Matricula</h4>        
+        </ion-card>
+        <ion-card class="uno"(click)="CitarComite()">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <h4>Peticiones</h4>        
+        </ion-card>
+    </ion-col>
+    <ion-col size="8" class="fechas">
+      <div *ngIf="editable === 'nada'" >
+        <div class="center">
+          <ion-item class="center"> Sin proceso evaluativo </ion-item>
+        </div> 
+        <ion-card *ngFor="let dat of listaDBnada">
+          <ion-card-header>
+            <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
+            <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="7">
+                <div>
+                  <div class="info-section">
+                    Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
+                    Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
+                    Numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
+                    
+                    Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="5">
+                <div>
+                  <div class="info-section">
+                    Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
+                    Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+                    Decisión del Comite: {{dat.decisionComite}}
+                    
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
           
-        Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
-        Decisión del Comite: {{dat.decisionComite}}
-      </ion-card-content>
-      
-      <ion-item>
-        <button slot="end" (click)="updateDecision(dat)">Poner decision del comite</button>
-      </ion-item>
-    </ion-card>
-  </div>
+          <ion-item>
+            <button slot="end" (click)="updateDecision(dat)">Poner decision</button>
+          </ion-item>
+        </ion-card>
+      </div>
 
-  <div *ngIf="editable === 'todos'">
-
-    <ion-item> Todas las Citaciones a comite </ion-item>
-
-    <ion-card *ngFor="let dat of listaDB">
-      <ion-card-header>
-        <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
-  
-        Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
-        numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
-      
-        Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
-        Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+      <div *ngIf="editable === 'todos'">
+        <div class="center">
+          <ion-item class="center"> Todas las Citaciones a comite </ion-item>
+        </div>
+        <ion-card *ngFor="let dat of listaDB">
+          <ion-card-header>
+            <ion-card-subtitle>Numero de Citación: {{dat.idCita}}</ion-card-subtitle>
+            <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="7">
+                <div>
+                  <div class="info-section">
+                    Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
+                    Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
+                    Numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
+                    
+                    Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="5">
+                <div>
+                  <div class="info-section">
+                    Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
+                    Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+                    Decisión del Comite: {{dat.decisionComite}}
+                    
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
           
-        Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
-        Decisión del Comite: {{dat.decisionComite}}
-      </ion-card-content>
-      
-      <ion-item *ngIf=' dat.decisionComite !== "Cancelar Matricula"'>
-        <button slot="end" (click)="updateDecision(dat)">Poner decision del comite</button>
-      </ion-item>
-    </ion-card>
-  </div>
-
-  <div *ngIf="editable === 'acta'">
-
-    <ion-item> Todas las Actas academicas</ion-item>
-
-    <ion-card *ngFor="let dat of listaDBacta">
-      <ion-card-header>
-        <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
-  
-        Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
-        numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
-      
-        Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
-        Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
           
-        Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
-        Decisión del Comite: {{dat.decisionComite}}
-      </ion-card-content>
-      
-      <ion-item>
-        <button slot="end" (click)="updateDecision(dat)">Poner decision del comite</button>
-      </ion-item>
-    </ion-card>
-  </div>
-
-  <div *ngIf="editable === 'cancelar'">
-
-    <ion-item> Todas las Cancelaciones de matricula </ion-item>
-
-    <ion-card *ngFor="let dat of listaDBcancelados">
-      <ion-card-header>
-        <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
-        <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
-  
-        Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
-        numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
-      
-        Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
-        Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
           
-        Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
-        Decisión del Comite: {{dat.decisionComite}}
-      </ion-card-content>
+          <ion-item *ngIf=' dat.decisionComite !== "Cancelar Matricula"'>
+            <button slot="end" (click)="updateDecision(dat)">Poner decision </button>
+          </ion-item>
+        </ion-card>
+      </div>
 
-    </ion-card>
-  </div>
+      <div *ngIf="editable === 'acta'" >
+        <div class="center">
+          <ion-item class="center"> Todas las Actas academicas</ion-item>
+        </div>
+        <ion-card *ngFor="let dat of listaDBacta">
+          <ion-card-header>
+            <ion-card-subtitle>Numero de Citación: {{dat.idCita}}</ion-card-subtitle>
+            <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="7">
+                <div>
+                  <div class="info-section">
+                    Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
+                    Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
+                    Numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
+                    
+                    Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="5">
+                <div>
+                  <div class="info-section">
+                    Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
+                    Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+                    Decisión del Comite: {{dat.decisionComite}}
+                    
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+          
+          
+          <ion-item>
+            <button slot="end" (click)="updateDecision(dat)">Poner decision</button>
+          </ion-item>
+        </ion-card>
+      </div>
 
+      <div *ngIf="editable === 'cancelar'" >
+        <div class="center">
+          <ion-item class="center"> Todas las Cancelaciones de matricula </ion-item>
+        </div>
+        <ion-card *ngFor="let dat of listaDBcancelados">
+          <ion-card-header>
+            <ion-card-subtitle>numero de citación: {{dat.idCita}}</ion-card-subtitle>
+            <ion-card-subtitle *ngIf="dat.fechaCitacion">fecha de citación: {{dat.fechaCitacion}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="7">
+                <div>
+                  <div class="info-section">
+                    Nombre del instructor: {{dat.instructor}}<ng-container *ngIf="dat.instructor && dat.correoInstructor"> <br> </ng-container>
+                    Nombre del aprendiz: {{dat.aprendiz}}<ng-container *ngIf="dat.aprendiz && dat.correoAprendiz"> <br> </ng-container>
+                    Numero TI del aprendiz: {{dat.numeroTI}}<ng-container *ngIf="dat.numeroTI && dat.ficha"> <br> </ng-container>
+                    
+                    Cargos: {{dat.nota}}<ng-container *ngIf="dat.nota && dat.decisionComite"></ng-container><br>
+                  </div>
+                </div>
+              </ion-col>
+              <ion-col size="5">
+                <div>
+                  <div class="info-section">
+                    Ficha: {{dat.ficha}}<ng-container *ngIf="dat.ficha && dat.programa"> <br> </ng-container>
+                    Programa: {{dat.programa}}<ng-container *ngIf="dat.programa && dat.instructor"> <br> </ng-container>
+                    Decisión del Comite: {{dat.decisionComite}}
+                    
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>    
+    
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
 </ion-content>
 

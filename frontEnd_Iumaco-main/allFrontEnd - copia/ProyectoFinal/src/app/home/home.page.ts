@@ -11,12 +11,6 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  ngOnInit(){}
-  constructor(private router: Router, private alertController: AlertController,private route: ActivatedRoute, private http:HttpClient) {
-    this.id = this.route.snapshot.paramMap.get('data');
-    this.permiso();
-  }    
-
   id: any = '';
 
   historialFelicitar = false;
@@ -31,6 +25,12 @@ export class HomePage implements OnInit {
       },(error) => {console.error('Error al obtener datos del servidor:', error);}
     )
   };
+
+  ngOnInit(){}
+  constructor(private router: Router, private alertController: AlertController,private route: ActivatedRoute, private http:HttpClient) {
+    this.id = this.route.snapshot.paramMap.get('data');
+    this.permiso();
+  }    
   
   cambiarEstadoF(){
     this.getHistorialF();
@@ -39,7 +39,6 @@ export class HomePage implements OnInit {
   }
 
   /* Aca estan los parametros para los botones de navegacion hacia los formularios que envian los correos*/
-  perfil() { this.router.navigate(['perfil', { data: this.id }]); }
   felicitarAprendiz() { this.router.navigate(['felicitar-aprendiz', { data: this.id }]); }
   llamadoAtencion() { this.router.navigate(['/llamado-atencion', { data: this.id }]); }
   citacionComite() { this.router.navigate(['/citacion-comite', { data: this.id }]); }
